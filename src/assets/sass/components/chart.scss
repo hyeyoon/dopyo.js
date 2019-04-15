@@ -1,0 +1,71 @@
+#chart {
+  margin: 20px;
+  padding: 20px;
+  width: 800px;
+  border: 1px solid #32bebe;
+}
+.chart {
+  margin: 0 auto;
+}
+.title {
+  text-align: center;
+}
+.axis {
+  text {
+    fill: #34314c;
+    stroke-width: 1;
+    stroke: #34314c;
+  }
+  line {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 2;
+  }
+}
+.x-axis {
+
+}
+.y-axis {
+  &-labels {
+    text {
+      alignment-baseline: middle;
+      text-anchor: end;
+    }
+  }
+  &-grid {
+    line {
+      stroke: rgba(180, 180, 180, 80);
+      stroke-dasharray: 4;
+      stroke-width: 2;
+      &:first-child {
+        stroke-width: 0;
+      }
+    }
+  }
+}
+.labels {
+  text {
+    fill: #aaa;
+  }
+}
+.data {
+  .dots {
+    circle {
+      fill: #fff;
+      stroke-width: 4;
+      stroke: #60c5ba;
+      transition: all ease 0.5s;
+      &:hover {
+        stroke-width: 6;
+        // transform: scale(2, 2);
+      }
+    }
+  }
+  .line {
+    path {
+      fill: none;
+      stroke: #60c5ba;
+      stroke-width: 4;
+    }
+  }
+}
