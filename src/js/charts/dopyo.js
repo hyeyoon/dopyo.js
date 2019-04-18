@@ -79,7 +79,7 @@ export default class Dopyo {
       </g>
     `;
   }
-  drawYAxisLabels([padding, size, series]) {
+  drawYAxisLabels([padding, size, series], showGrid = true) {
     let max = _c.getArraysMax(_c.getDataSet(series));
     let min = (_c.getArraysMin(_c.getDataSet(series)) < 0) ? _c.getArraysMin(_c.getDataSet(series)) : 0;
     const yAxisHeight = size.height - (padding * 2);
@@ -91,6 +91,16 @@ export default class Dopyo {
       `;
     }).join("");
     this.svgEl.innerHTML += `<g class="labels y-axis-labels">${yAxisLabels}</g>`;
+    if(showGrid) {
+      this.drawYAxisGrid({padding, size, yAxisData, unit});
+    }
+  }
+  drawYAxisGrid({padding, size, yAxisData, unit}) {
+    const yAxisHeight = size.height - (padding * 2);
+    const yAxisGrid = yAxisData.map((data, index) => {
+      return `<line x1="${padding}" x2="${size.width - padding}" y1="${(yAxisHeight - (yAxisHeight / unit * index))}" y2="${(yAxisHeight - (yAxisHeight / unit * index))}" />`
+    }).join("");
+    this.svgEl.innerHTML += `<g class="grid y-axis-grid">${yAxisGrid}</g>`;
   }
   drawData(containerEl, svgEl) {
     containerEl.appendChild(svgEl);
