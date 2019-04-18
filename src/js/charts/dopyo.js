@@ -14,8 +14,8 @@ export default class Dopyo {
     this.drawXAxisLabels([this.padding, this.size, this.data.xAxis]);
     this.drawYAxis([this.padding, this.size]);
     this.drawYAxisLabels([this.padding, this.size, this.data.series]);
-    // this.drawYAxisGrid();
-    this.drawData(this.containerEl, this.svgEl);
+    this.drawData([this.padidng, this.size, this.data.series]);
+    this.drawChart(this.containerEl, this.svgEl);
   }
   appendSvgEl({width, height}) {
     const svgEl = _h.createElNS("svg", "http://www.w3.org/2000/svg");
@@ -102,7 +102,12 @@ export default class Dopyo {
     }).join("");
     this.svgEl.innerHTML += `<g class="grid y-axis-grid">${yAxisGrid}</g>`;
   }
-  drawData(containerEl, svgEl) {
+  drawData({padding, size, data}) {
+    // this.drawArea();
+    // this.drawLine();
+    // this.drawDots();
+  }
+  drawChart(containerEl, svgEl) {
     containerEl.appendChild(svgEl);
   }
 }
