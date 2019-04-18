@@ -1,7 +1,8 @@
 import _h from '../Utils/helper';
+import _c from '../Utils/calculate';
 export default class Dopyo {
   constructor({padding, size, containerEl, data, options}) {
-    this.padding = !this.padding ? 40 : padding;
+    this.padding = !this.padding ? 60 : padding;
     this.size = size;
     this.containerEl = _h.selectEl(containerEl);
     this.data = data;
@@ -49,7 +50,10 @@ export default class Dopyo {
     const xAxisWidth = size.width - (padding * 2);
     const gap = Math.floor(xAxisWidth / (xAxisData.length - 1));
     const xAxisLabels = xAxisData.map((data, index) => {
-      return `<text x="${padding + (gap * index)}" y="${size.height - padding}">${data}</text>`
+      return `
+        <text x="${padding + (gap * index)}" y="${size.height - (padding * 1.5)}">${data}</text>
+        <line x1="${padding + (gap * index)}" x2="${padding + (gap * index)}" y1="${size.height - (padding * 2)}" y2="${size.height - (padding * 2) + 5}" />
+      `
     }).join("");
     this.svgEl.innerHTML += `<g class="labels x-axis-labels">${xAxisLabels}</g>`;
   }
@@ -76,7 +80,17 @@ export default class Dopyo {
     `;
   }
   drawYAxisLabels([padding, size, series]) {
-
+    let max = _c.getArraysMax(_c.getDataSet(series));
+    let min = (_c.getArraysMin(_c.getDataSet(series)) < 0) ? _c.getArraysMin(_c.getDataSet(series)) : 0;
+    const yAxisHeight = size.height - (padding * 2);
+    const {unit, yAxisData} = _c.calculateYAxis(max, min);
+    const yAxisLabels = yAxisData.map((data, index) => {
+      return `
+        <text x="${padding / 2 * 1.2}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
+        <line x1="${padding - 5}" x2="${padding}" y1="${(yAxisHeight - (yAxisHeight / unit * index))}" y2="${(yAxisHeight - (yAxisHeight / unit * index))}" />
+      `;
+    }).join("");
+    this.svgEl.innerHTML += `<g class="labels y-axis-labels">${yAxisLabels}</g>`;
   }
   drawData(containerEl, svgEl) {
     containerEl.appendChild(svgEl);

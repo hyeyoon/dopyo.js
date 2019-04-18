@@ -10,5 +10,5 @@ module.exports = {
   },
   createElNS(el, namespaceURI) {
     return document.createElementNS(namespaceURI, el);
-  }
+  },
 }

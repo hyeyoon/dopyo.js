@@ -28,6 +28,7 @@
 .x-axis {
   &-labels {
     text {
+      alignment-baseline: middle;
       text-anchor: middle;
     }
   }
@@ -53,6 +54,10 @@
 .labels {
   text {
     fill: #aaa;
+  }
+  line {
+    stroke-width: 1;
+    stroke: #aaa;
   }
 }
 .data {
