@@ -1,7 +1,10 @@
-#chart {
-  margin: 20px;
+.container {
+  box-sizing: border-box;
+  width: 100%;
   padding: 20px;
-  width: 800px;
+}
+#chart {
+  width: 100%;
   border: 1px solid #32bebe;
 }
 .chart {
@@ -23,7 +26,12 @@
   }
 }
 .x-axis {
-
+  &-labels {
+    text {
+      alignment-baseline: middle;
+      text-anchor: middle;
+    }
+  }
 }
 .y-axis {
   &-labels {
@@ -47,6 +55,10 @@
   text {
     fill: #aaa;
   }
+  line {
+    stroke-width: 1;
+    stroke: #aaa;
+  }
 }
 .data {
   .dots {
@@ -67,5 +79,13 @@
       stroke: #60c5ba;
       stroke-width: 4;
     }
+  }
+}
+
+#dopyo-chart {
+  margin: 20px;
+  svg {
+    margin: 0 auto;
+    border: 1px solid #00b584;
   }
 }
