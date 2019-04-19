@@ -12,6 +12,7 @@ export default class Dopyo {
     this.unit = 5;
     // 자리수
     this.digit = 10;
+    this.colors = ['#60c5ba', '#47b8e0'];
   }
   init() {
     this.drawXAxis([this.padding, this.size]);
@@ -124,19 +125,40 @@ export default class Dopyo {
     })
 
     // this.drawArea();
-    // this.drawLine();
-    this.svgEl.innerHTML += `<g class="data">${this.drawDots(data.series)}</g>`
+    this.svgEl.innerHTML += `
+      <g class="data">
+        ${this.drawLine(data.series)}
+        ${this.drawDots(data.series)}
+      </g>
+    `
   }
   drawDots(series) {
-    let dotsGroup;
-    const colors = ['#60c5ba', '#47b8e0'];
+    let dotsEl;
     series.forEach((item, index) => {
       let dots = item.calculatedData.map((x, i) => {
-        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${colors[index]}" fill="#fff" data-value="${item.data[i]}" />`
+        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-value="${item.data[i]}" />`
       }).join("");
-      dotsGroup += `<g class="dots">${dots}</g>`;
+      dotsEl += `<g class="dots">${dots}</g>`;
     })
-    return dotsGroup;
+    return dotsEl;
+  }
+  drawLine(series) {
+    let lineEl;
+    series.forEach((item, index) => {
+      let tmpLine = item.calculatedData.reduce((accum, curr, idx, array) => {
+        if (!Array.isArray(curr)) { return; }
+        else {
+          if (idx === 0) {
+            accum += 'M ';
+          } else if (idx === 1) {
+            accum += 'L ';
+          }
+          return accum += `${curr.join(",")} `;
+        }
+      }, "");
+      lineEl += `<g class="line"><path fill="none" d="${tmpLine}" stroke="${this.colors[index]}" /></g>`;
+    })
+    return lineEl;
   }
   drawChart(containerEl, svgEl) {
     containerEl.appendChild(svgEl);

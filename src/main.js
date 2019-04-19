@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       series: [
         {
           name: '라인그래프1',
-          data: [10, 20, 5, 60, 100]
+          data: [10, 20, 150, 60, 100]
         },
         {
           name: '라인그래프2',
