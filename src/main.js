@@ -8,8 +8,8 @@ if (module.hot) {
 document.addEventListener('DOMContentLoaded', () => {
   const dopyo = new Dopyo({
     size: {
-      width: 800,
-      height: 640,
+      width: 600,
+      height: 400,
     },
     containerEl: '#dopyo-chart',
     data: {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
           name: '라인그래프2',
-          data: [20, 50, 15, 30, 800]
+          data: [20, 50, 15, 30, 200]
         },
       ]
     },

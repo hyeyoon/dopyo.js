@@ -2,19 +2,23 @@ import _h from '../Utils/helper';
 import _c from '../Utils/calculate';
 export default class Dopyo {
   constructor({padding, size, containerEl, data, options}) {
-    this.padding = !this.padding ? 60 : padding;
+    this.padding = !this.padding ? 40 : padding;
     this.size = size;
     this.containerEl = _h.selectEl(containerEl);
     this.data = data;
     this.options = options;
     this.svgEl = this.appendSvgEl(size);
+    // y축 단위
+    this.unit = 5;
+    // 자리수
+    this.digit = 10;
   }
   init() {
     this.drawXAxis([this.padding, this.size]);
     this.drawXAxisLabels([this.padding, this.size, this.data.xAxis]);
     this.drawYAxis([this.padding, this.size]);
-    this.drawYAxisLabels([this.padding, this.size, this.data.series]);
-    this.drawData([this.padidng, this.size, this.data.series]);
+    this.drawYAxisLabels([this.padding, this.size, this.data.series, this.unit, this.digit]);
+    this.drawData([this.padding, this.size, this.data, this.unit, this.digit]);
     this.drawChart(this.containerEl, this.svgEl);
   }
   appendSvgEl({width, height}) {
@@ -47,8 +51,8 @@ export default class Dopyo {
     `;
   }
   drawXAxisLabels([padding, size, xAxisData]) {
-    const xAxisWidth = size.width - (padding * 2);
-    const gap = Math.floor(xAxisWidth / (xAxisData.length - 1));
+    const xAxisWidth = _c.getXAxisWidth(size.width, padding);
+    const gap = _c.calculateXAxisGap(xAxisWidth, xAxisData.length);
     const xAxisLabels = xAxisData.map((data, index) => {
       return `
         <text x="${padding + (gap * index)}" y="${size.height - (padding * 1.5)}">${data}</text>
@@ -79,14 +83,14 @@ export default class Dopyo {
       </g>
     `;
   }
-  drawYAxisLabels([padding, size, series], showGrid = true) {
+  drawYAxisLabels([padding, size, series, unit, digit], showGrid = true) {
     let max = _c.getArraysMax(_c.getDataSet(series));
     let min = (_c.getArraysMin(_c.getDataSet(series)) < 0) ? _c.getArraysMin(_c.getDataSet(series)) : 0;
-    const yAxisHeight = size.height - (padding * 2);
-    const {unit, yAxisData} = _c.calculateYAxis(max, min);
+    const yAxisHeight = _c.getYAxisHeight(size.height, padding);
+    const yAxisData = _c.calculateYAxis(max, min, unit, digit);
     const yAxisLabels = yAxisData.map((data, index) => {
       return `
-        <text x="${padding / 2 * 1.2}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
+        <text x="${padding / 2 * 1.4}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
         <line x1="${padding - 5}" x2="${padding}" y1="${(yAxisHeight - (yAxisHeight / unit * index))}" y2="${(yAxisHeight - (yAxisHeight / unit * index))}" />
       `;
     }).join("");
@@ -96,16 +100,43 @@ export default class Dopyo {
     }
   }
   drawYAxisGrid({padding, size, yAxisData, unit}) {
-    const yAxisHeight = size.height - (padding * 2);
+    const yAxisHeight = _c.getYAxisHeight(size.height, padding);
     const yAxisGrid = yAxisData.map((data, index) => {
       return `<line x1="${padding}" x2="${size.width - padding}" y1="${(yAxisHeight - (yAxisHeight / unit * index))}" y2="${(yAxisHeight - (yAxisHeight / unit * index))}" />`
     }).join("");
     this.svgEl.innerHTML += `<g class="grid y-axis-grid">${yAxisGrid}</g>`;
   }
-  drawData({padding, size, data}) {
+  drawData([padding, size, data, unit, digit]) {
+    let max = _c.getArraysMax(_c.getDataSet(data.series));
+    let min = (_c.getArraysMin(_c.getDataSet(data.series)) < 0) ? _c.getArraysMin(_c.getDataSet(data.series)) : 0;
+    const yAxisHeight = _c.getYAxisHeight(size.height, padding);
+    const standardYAxis = {
+      value:  _c.calculateYAxisGap(max, min, unit, digit),
+      yCoordinate: yAxisHeight / unit
+    }
+
+    const xAxisGap = _c.calculateXAxisGap(_c.getXAxisWidth(size.width, padding), data.xAxis.length);
+
+    data.series.forEach((item, index) => {
+      item.calculatedData = item.data.map((x, i) => {
+        return [padding + (xAxisGap * i), yAxisHeight - (x * standardYAxis.yCoordinate / standardYAxis.value)];
+      })
+    })
+
     // this.drawArea();
     // this.drawLine();
-    // this.drawDots();
+    this.svgEl.innerHTML += `<g class="data">${this.drawDots(data.series)}</g>`
+  }
+  drawDots(series) {
+    let dotsGroup;
+    const colors = ['#60c5ba', '#47b8e0'];
+    series.forEach((item, index) => {
+      let dots = item.calculatedData.map((x, i) => {
+        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${colors[index]}" fill="#fff" data-value="${item.data[i]}" />`
+      }).join("");
+      dotsGroup += `<g class="dots">${dots}</g>`;
+    })
+    return dotsGroup;
   }
   drawChart(containerEl, svgEl) {
     containerEl.appendChild(svgEl);
