@@ -14,8 +14,8 @@ module.exports = {
   getDataSet(series) {
     return series.map(item => item.data);
   },
-  getFiveMultipleNum(num) {
-    return Math.floor(num / 10) * 10;
+  getNegativeMinNum(num, gap) {
+    return Math.floor(num / gap) * gap
   },
   getXAxisWidth(width, padding) {
     return width - (padding * 2);
@@ -27,11 +27,9 @@ module.exports = {
     return Math.floor(xAxisWidth / (length - 1));
   },
   calculateYAxis(max, min, unit, digit) {
-    // const unit = 5;
-    // const digit = 10;
     const gap = this.calculateYAxisGap(max, min, unit, digit);
     if (min < 0) {
-      min = _c.getFiveMultipleNum(min);
+      min = this.getNegativeMinNum(min, gap);
     }
     const yAxisData = [];
     for (let i = 0; i < unit; i++) {
@@ -41,6 +39,8 @@ module.exports = {
   },
   calculateYAxisGap(max, min, unit, digit) {
     let gap;
+    console.log('max:', max);
+    console.log('min:', min);
     let tmpGap = Math.abs(Math.ceil(((max - min) / unit / digit))) * digit;
     if (tmpGap < 5) {
       gap = 5;

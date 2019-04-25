@@ -78,7 +78,19 @@
       fill: none;
       // stroke: #60c5ba;
       stroke-width: 4;
+      stroke-dasharray: 1000;
+      // stroke-dashoffset: 1000;
+      animation: dash 2s linear forwards;
     }
+  }
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -89,4 +101,9 @@
     padding: 0 20px;
     border: 1px solid #32bebe;
   }
+}
+
+.add {
+  border: 2px solid #32bebe;
+  padding: 5px;
 }

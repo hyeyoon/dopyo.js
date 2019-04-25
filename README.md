@@ -1,6 +1,6 @@
 # dopyo.js
 
-> Simple, light javascript chart library.
+> Simple, lightweight javascript chart library.
 
 ## Build Setup
 

@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
       series: [
         {
           name: '라인그래프1',
-          data: [10, 20, 150, 60, 100]
+          data: [10, 22, 150, 60, 100]
         },
         {
           name: '라인그래프2',
-          data: [20, 50, 15, 30, 200]
+          data: [20, 50, 15, 36, 240]
         },
       ]
     },
@@ -39,4 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   dopyo.init();
+
+
+  // *********************
+  // Test
+  // *********************
+
+  let count = 6;
+  const addBtn = document.querySelector('.add');
+  addBtn.addEventListener("click", () => {
+    dopyo.addData({
+      xAxis: `2019-0${count}`,
+      series: [
+        {
+          name: '라인그래프1',
+          data: Math.floor(Math.random() * (800 - 0)) + 0
+        },
+        {
+          name: '라인그래프2',
+          data: Math.floor(Math.random() * (800 - 0)) + 0
+        },
+      ],
+    });
+    count++
+  })
 })

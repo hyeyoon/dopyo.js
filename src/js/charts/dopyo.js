@@ -1,5 +1,5 @@
-import _h from '../Utils/helper';
-import _c from '../Utils/calculate';
+import _h from '../utils/helper';
+import _c from '../utils/calculate';
 export default class Dopyo {
   constructor({padding, size, containerEl, data, options}) {
     this.padding = !this.padding ? 40 : padding;
@@ -87,6 +87,7 @@ export default class Dopyo {
   drawYAxisLabels([padding, size, series, unit, digit], showGrid = true) {
     let max = _c.getArraysMax(_c.getDataSet(series));
     let min = (_c.getArraysMin(_c.getDataSet(series)) < 0) ? _c.getArraysMin(_c.getDataSet(series)) : 0;
+    // if (min < 0) ++unit;
     const yAxisHeight = _c.getYAxisHeight(size.height, padding);
     const yAxisData = _c.calculateYAxis(max, min, unit, digit);
     const yAxisLabels = yAxisData.map((data, index) => {
@@ -110,6 +111,7 @@ export default class Dopyo {
   drawData([padding, size, data, unit, digit]) {
     let max = _c.getArraysMax(_c.getDataSet(data.series));
     let min = (_c.getArraysMin(_c.getDataSet(data.series)) < 0) ? _c.getArraysMin(_c.getDataSet(data.series)) : 0;
+    // if (min < 0) ++unit;
     const yAxisHeight = _c.getYAxisHeight(size.height, padding);
     const standardYAxis = {
       value:  _c.calculateYAxisGap(max, min, unit, digit),
@@ -119,8 +121,8 @@ export default class Dopyo {
     const xAxisGap = _c.calculateXAxisGap(_c.getXAxisWidth(size.width, padding), data.xAxis.length);
 
     data.series.forEach((item, index) => {
-      item.calculatedData = item.data.map((x, i) => {
-        return [padding + (xAxisGap * i), yAxisHeight - (x * standardYAxis.yCoordinate / standardYAxis.value)];
+      item.calculatedData = item.data.map((y, i) => {
+        return [padding + (xAxisGap * i), yAxisHeight - (y * standardYAxis.yCoordinate / standardYAxis.value)];
       })
     })
 
@@ -162,5 +164,26 @@ export default class Dopyo {
   }
   drawChart(containerEl, svgEl) {
     containerEl.appendChild(svgEl);
+  }
+
+
+  // *********************
+  // Test
+  // *********************
+  addData(option) {
+    this.data.xAxis.push(option.xAxis);
+    option.series.forEach(a => {
+      this.data.series.forEach(b => {
+        if (a.name === b.name) {
+          b.data.push(a.data);
+        }
+      })
+    })
+    this.resetChart();
+    this.init();
+  }
+  resetChart() {
+    document.querySelector('svg').innerHTML = "";
+    this.svg = this.appendSvgEl(this.size);
   }
 }
