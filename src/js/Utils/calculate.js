@@ -39,23 +39,18 @@ module.exports = {
   },
   calculateYAxisGap(max, min, unit, digit) {
     let gap;
-    console.log('max:', max);
-    console.log('min:', min);
-    let tmpGap = Math.abs(Math.ceil(((max - min) / unit / digit))) * digit;
-    if (tmpGap < 5) {
+    // let tmpGap = Math.abs(Math.ceil(((max - min) / unit / digit))) * digit;
+    // let gapList = [25, 50, 100 ,250(5 * 50), 500(10 * 50), 750(15 * 50), ...]
+    let maxMinGap = Math.ceil(max - min);
+    if (maxMinGap < 25) {
       gap = 5;
-      return
-    } else if (tmpGap < 10) {
+    } else if (maxMinGap < 50) {
       gap = 10;
-      return
-    } else if (tmpGap < 20) {
+    } else if (maxMinGap < 100) {
       gap = 20;
-      return
-    } else if (tmpGap < 30) {
-      gap = 30;
-      return
     } else {
-      gap = Math.ceil(tmpGap / 50) * 50;
+      const multipleNum = Math.ceil(maxMinGap / 50 / 5);
+      gap = multipleNum * 50;
     }
     return gap;
   }

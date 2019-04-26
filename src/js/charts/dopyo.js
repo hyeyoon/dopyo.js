@@ -9,7 +9,7 @@ export default class Dopyo {
     this.options = options;
     this.svgEl = this.appendSvgEl(size);
     // y축 단위
-    this.unit = 5;
+    this.unit = 6;
     // 자리수
     this.digit = 10;
     this.colors = ['#60c5ba', '#47b8e0'];
@@ -87,13 +87,12 @@ export default class Dopyo {
   drawYAxisLabels([padding, size, series, unit, digit], showGrid = true) {
     let max = _c.getArraysMax(_c.getDataSet(series));
     let min = (_c.getArraysMin(_c.getDataSet(series)) < 0) ? _c.getArraysMin(_c.getDataSet(series)) : 0;
-    // if (min < 0) ++unit;
     const yAxisHeight = _c.getYAxisHeight(size.height, padding);
     const yAxisData = _c.calculateYAxis(max, min, unit, digit);
     const yAxisLabels = yAxisData.map((data, index) => {
       return `
-        <text x="${padding / 2 * 1.4}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
-        <line x1="${padding - 5}" x2="${padding}" y1="${(yAxisHeight - (yAxisHeight / unit * index))}" y2="${(yAxisHeight - (yAxisHeight / unit * index))}" />
+        <text x="${padding / 2 * 1.6}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
+        <line x1="${padding - 5}" x2="${padding}" y1="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" y2="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" />
       `;
     }).join("");
     this.svgEl.innerHTML += `<g class="labels y-axis-labels">${yAxisLabels}</g>`;
@@ -104,25 +103,27 @@ export default class Dopyo {
   drawYAxisGrid({padding, size, yAxisData, unit}) {
     const yAxisHeight = _c.getYAxisHeight(size.height, padding);
     const yAxisGrid = yAxisData.map((data, index) => {
-      return `<line x1="${padding}" x2="${size.width - padding}" y1="${(yAxisHeight - (yAxisHeight / unit * index))}" y2="${(yAxisHeight - (yAxisHeight / unit * index))}" />`
+      return `<line x1="${padding}" x2="${size.width - padding}" y1="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" y2="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" />`
     }).join("");
     this.svgEl.innerHTML += `<g class="grid y-axis-grid">${yAxisGrid}</g>`;
   }
   drawData([padding, size, data, unit, digit]) {
     let max = _c.getArraysMax(_c.getDataSet(data.series));
     let min = (_c.getArraysMin(_c.getDataSet(data.series)) < 0) ? _c.getArraysMin(_c.getDataSet(data.series)) : 0;
-    // if (min < 0) ++unit;
+    const yAxisData = _c.calculateYAxis(max, min, unit, digit);
     const yAxisHeight = _c.getYAxisHeight(size.height, padding);
     const standardYAxis = {
       value:  _c.calculateYAxisGap(max, min, unit, digit),
       yCoordinate: yAxisHeight / unit
     }
-
+    const zeroIndex = yAxisData.findIndex(num => num === 0);
     const xAxisGap = _c.calculateXAxisGap(_c.getXAxisWidth(size.width, padding), data.xAxis.length);
-
     data.series.forEach((item, index) => {
       item.calculatedData = item.data.map((y, i) => {
-        return [padding + (xAxisGap * i), yAxisHeight - (y * standardYAxis.yCoordinate / standardYAxis.value)];
+        return [
+          padding + (xAxisGap * i),
+          yAxisHeight - (y * standardYAxis.yCoordinate / standardYAxis.value) + - Math.round(standardYAxis.yCoordinate * zeroIndex)
+        ];
       })
     })
 
@@ -135,7 +136,7 @@ export default class Dopyo {
     `
   }
   drawDots(series) {
-    let dotsEl;
+    let dotsEl="";
     series.forEach((item, index) => {
       let dots = item.calculatedData.map((x, i) => {
         return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-value="${item.data[i]}" />`
@@ -145,7 +146,7 @@ export default class Dopyo {
     return dotsEl;
   }
   drawLine(series) {
-    let lineEl;
+    let lineEl="";
     series.forEach((item, index) => {
       let tmpLine = item.calculatedData.reduce((accum, curr, idx, array) => {
         if (!Array.isArray(curr)) { return; }

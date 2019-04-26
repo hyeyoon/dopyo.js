@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
       series: [
         {
           name: '라인그래프1',
-          data: [10, 22, 150, 60, 100]
+          data: [50, -22, 200, 60, -200]
         },
         {
           name: '라인그래프2',
-          data: [20, 50, 15, 36, 240]
+          data: [20, -40, 15, 36, -20]
         },
       ]
     },
