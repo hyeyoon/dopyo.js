@@ -14,38 +14,43 @@ module.exports = {
   getDataSet(series) {
     return series.map(item => item.data);
   },
-  getFiveMultipleNum(num) {
-    return Math.floor(num / 10) * 10;
+  getNegativeMinNum(num, gap) {
+    return Math.floor(num / gap) * gap
   },
-  calculateYAxis(max, min) {
-    const unit = 5;
-    const digit = 10;
-    const gap = this.calculateGap(max, min, unit, digit);
+  getXAxisWidth(width, padding) {
+    return width - (padding * 2);
+  },
+  getYAxisHeight(height, padding) {
+    return height - (padding * 2);
+  },
+  calculateXAxisGap(xAxisWidth, length) {
+    return Math.floor(xAxisWidth / (length - 1));
+  },
+  calculateYAxis(max, min, unit, digit) {
+    const gap = this.calculateYAxisGap(max, min, unit, digit);
     if (min < 0) {
-      min = _c.getFiveMultipleNum(min);
+      min = this.getNegativeMinNum(min, gap);
     }
     const yAxisData = [];
     for (let i = 0; i < unit; i++) {
       yAxisData.push(min + (i * gap));
     }
-    return {unit, yAxisData};
+    return yAxisData;
   },
-  calculateGap(max, min, unit, digit) {
-    let gap = Math.abs(Math.ceil(((max - min) / unit / digit))) * digit;
-    if (gap <= 5) {
+  calculateYAxisGap(max, min, unit, digit) {
+    let gap;
+    // let tmpGap = Math.abs(Math.ceil(((max - min) / unit / digit))) * digit;
+    // let gapList = [25, 50, 100 ,250(5 * 50), 500(10 * 50), 750(15 * 50), ...]
+    let maxMinGap = Math.ceil(max - min);
+    if (maxMinGap < 25) {
       gap = 5;
-      return
-    } else if (gap < 10) {
+    } else if (maxMinGap < 50) {
       gap = 10;
-      return
-    } else if (gap < 20) {
+    } else if (maxMinGap < 100) {
       gap = 20;
-      return
-    } else if (gap < 30) {
-      gap = 30;
-      return
     } else {
-      gap = Math.ceil(gap / 50) * 50;
+      const multipleNum = Math.ceil(maxMinGap / 50 / 5);
+      gap = multipleNum * 50;
     }
     return gap;
   }
