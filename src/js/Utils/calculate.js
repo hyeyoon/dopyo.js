@@ -1,3 +1,4 @@
+import _v from '../utils/variables';
 module.exports = {
   getArrayMax(array) {
     return Math.max(...array);
@@ -18,10 +19,10 @@ module.exports = {
     return Math.floor(num / gap) * gap
   },
   getXAxisWidth(width, padding) {
-    return width - (padding * 2);
+    return width - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES);
   },
   getYAxisHeight(height, padding) {
-    return height - (padding * 2);
+    return height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES);
   },
   calculateXAxisGap(xAxisWidth, length) {
     return Math.floor(xAxisWidth / (length - 1));
@@ -39,8 +40,6 @@ module.exports = {
   },
   calculateYAxisGap(max, min, unit, digit) {
     let gap;
-    // let tmpGap = Math.abs(Math.ceil(((max - min) / unit / digit))) * digit;
-    // let gapList = [25, 50, 100 ,250(5 * 50), 500(10 * 50), 750(15 * 50), ...]
     let maxMinGap = Math.ceil(max - min);
     if (maxMinGap < 25) {
       gap = 5;

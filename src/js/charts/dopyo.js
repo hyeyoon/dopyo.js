@@ -1,17 +1,16 @@
 import _h from '../utils/helper';
 import _c from '../utils/calculate';
+import _v from '../utils/variables';
 export default class Dopyo {
   constructor({padding, size, containerEl, data, options}) {
-    this.padding = !this.padding ? 40 : padding;
+    this.padding = !this.padding ? _v.DEFAULT_PADDING : padding;
     this.size = size;
     this.containerEl = _h.selectEl(containerEl);
     this.data = data;
     this.options = options;
     this.svgEl = this.appendSvgEl(size);
-    // y축 단위
-    this.unit = 6;
-    // 자리수
-    this.digit = 10;
+    this.unit = _v.Y_AXIS_UNIT;
+    this.digit = _v.DEFAULT_DIGIT;
     this.colors = ['#60c5ba', '#47b8e0'];
   }
   init() {
@@ -31,17 +30,17 @@ export default class Dopyo {
   }
   drawXAxis([padding, {width, height}]) {
     const axisLabel = {
-      x: width - (padding * 2),
-      y: height - (padding / 2)
+      x: width - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES),
+      y: height - (padding / _v.DEFAULT_PADDING_DIVISION_TIMES)
     }
     const axisLine = {
       left: {
         x: padding,
-        y: height - (padding * 2)
+        y: height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)
       },
       right: {
         x: width - padding,
-        y: height - (padding * 2)
+        y: height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)
       }
     };
     this.svgEl.innerHTML += `
@@ -56,8 +55,8 @@ export default class Dopyo {
     const gap = _c.calculateXAxisGap(xAxisWidth, xAxisData.length);
     const xAxisLabels = xAxisData.map((data, index) => {
       return `
-        <text x="${padding + (gap * index)}" y="${size.height - (padding * 1.5)}">${data}</text>
-        <line x1="${padding + (gap * index)}" x2="${padding + (gap * index)}" y1="${size.height - (padding * 2)}" y2="${size.height - (padding * 2) + 5}" />
+        <text x="${padding + (gap * index)}" y="${size.height - (padding * _v.X_AXIS_LABEL_PADDING_MULTIPLE_TIMES)}">${data}</text>
+        <line x1="${padding + (gap * index)}" x2="${padding + (gap * index)}" y1="${size.height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)}" y2="${size.height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES) + _v.AXIS_LABEL_LINE_SIZE}" />
       `
     }).join("");
     this.svgEl.innerHTML += `<g class="labels x-axis-labels">${xAxisLabels}</g>`;
@@ -65,12 +64,12 @@ export default class Dopyo {
   drawYAxis([padding, {width, height}]) {
     const axisLabel = {
       x: 0,
-      y: (padding / 2)
+      y: (padding / _v.DEFAULT_PADDING_DIVISION_TIMES)
     }
     const axisLine = {
       left: {
         x: padding,
-        y: height - (padding * 2)
+        y: height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)
       },
       right: {
         x: padding,
@@ -91,8 +90,8 @@ export default class Dopyo {
     const yAxisData = _c.calculateYAxis(max, min, unit, digit);
     const yAxisLabels = yAxisData.map((data, index) => {
       return `
-        <text x="${padding / 2 * 1.6}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
-        <line x1="${padding - 5}" x2="${padding}" y1="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" y2="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" />
+        <text x="${padding / _v.DEFAULT_PADDING_DIVISION_TIMES * _v.Y_AXIS_LABEL_PADDING_MULTIPLE_TIMES}" y="${(yAxisHeight - (yAxisHeight / unit * index)) }">${data}</text>
+        <line x1="${padding - _v.AXIS_LABEL_LINE_SIZE}" x2="${padding}" y1="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" y2="${(yAxisHeight - Math.round(yAxisHeight / unit * index))}" />
       `;
     }).join("");
     this.svgEl.innerHTML += `<g class="labels y-axis-labels">${yAxisLabels}</g>`;
