@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   pipe(...functions) {
     return args => functions.reduce((arg, nextFn) => nextFn(arg), args);
   },
@@ -11,4 +11,16 @@ module.exports = {
   createElNS(el, namespaceURI) {
     return document.createElementNS(namespaceURI, el);
   },
+  addEventToEl(el, type, fn) {
+    el.addEventListener(type, e => {
+      fn(e);
+    })
+  },
+  findKey(collection, key) {
+    for (let item in collection) {
+      if (collection[item] === key) {
+        return item;
+      }
+    }
+  }
 }
