@@ -1,9 +1,10 @@
 import _h from '../utils/helper';
 import _c from '../utils/calculate';
 import _v from '../utils/variables';
-export default class Dopyo {
-  constructor({padding, size, containerEl, data, options}) {
-    this.padding = !this.padding ? _v.DEFAULT_PADDING : padding;
+
+export default class ChartBasic {
+  constructor({padding, type, size, containerEl, data, options}) {
+    this.padding = !options.hasOwnProperty(padding) ? _v.DEFAULT_PADDING : padding;
     this.size = size;
     this.containerEl = _h.selectEl(containerEl);
     this.data = data;
@@ -12,14 +13,6 @@ export default class Dopyo {
     this.unit = _v.Y_AXIS_UNIT;
     this.digit = _v.DEFAULT_DIGIT;
     this.colors = ['#60c5ba', '#47b8e0'];
-  }
-  init() {
-    this.drawXAxis([this.padding, this.size]);
-    this.drawXAxisLabels([this.padding, this.size, this.data.xAxis]);
-    this.drawYAxis([this.padding, this.size]);
-    this.drawYAxisLabels([this.padding, this.size, this.data.series, this.unit, this.digit]);
-    this.drawData([this.padding, this.size, this.data, this.unit, this.digit]);
-    this.drawChart(this.containerEl, this.svgEl);
   }
   appendSvgEl({width, height}) {
     const svgEl = _h.createElNS("svg", "http://www.w3.org/2000/svg");
@@ -106,84 +99,32 @@ export default class Dopyo {
     }).join("");
     this.svgEl.innerHTML += `<g class="grid y-axis-grid">${yAxisGrid}</g>`;
   }
-  drawData([padding, size, data, unit, digit]) {
-    let max = _c.getArraysMax(_c.getDataSet(data.series));
-    let min = (_c.getArraysMin(_c.getDataSet(data.series)) < 0) ? _c.getArraysMin(_c.getDataSet(data.series)) : 0;
-    const yAxisData = _c.calculateYAxis(max, min, unit, digit);
-    const yAxisHeight = _c.getYAxisHeight(size.height, padding);
-    const standardYAxis = {
-      value:  _c.calculateYAxisGap(max, min, unit, digit),
-      yCoordinate: yAxisHeight / unit
+  addTooltipEvent(e) {
+    if (e.target.nodeName.toLowerCase() !== 'circle') return;
+    else {
     }
-    const zeroIndex = yAxisData.findIndex(num => num === 0);
-    const xAxisGap = _c.calculateXAxisGap(_c.getXAxisWidth(size.width, padding), data.xAxis.length);
-    data.series.forEach((item, index) => {
-      item.calculatedData = item.data.map((y, i) => {
-        return [
-          padding + (xAxisGap * i),
-          yAxisHeight - (y * standardYAxis.yCoordinate / standardYAxis.value) + - Math.round(standardYAxis.yCoordinate * zeroIndex)
-        ];
-      })
-    })
-
-    // this.drawArea();
-    this.svgEl.innerHTML += `
-      <g class="data">
-        ${this.drawLine(data.series)}
-        ${this.drawDots(data.series)}
-      </g>
-    `
-  }
-  drawDots(series) {
-    let dotsEl="";
-    series.forEach((item, index) => {
-      let dots = item.calculatedData.map((x, i) => {
-        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-value="${item.data[i]}" />`
-      }).join("");
-      dotsEl += `<g class="dots">${dots}</g>`;
-    })
-    return dotsEl;
-  }
-  drawLine(series) {
-    let lineEl="";
-    series.forEach((item, index) => {
-      let tmpLine = item.calculatedData.reduce((accum, curr, idx, array) => {
-        if (!Array.isArray(curr)) { return; }
-        else {
-          if (idx === 0) {
-            accum += 'M ';
-          } else if (idx === 1) {
-            accum += 'L ';
-          }
-          return accum += `${curr.join(",")} `;
-        }
-      }, "");
-      lineEl += `<g class="line"><path fill="none" d="${tmpLine}" stroke="${this.colors[index]}" /></g>`;
-    })
-    return lineEl;
   }
   drawChart(containerEl, svgEl) {
     containerEl.appendChild(svgEl);
   }
 
-
   // *********************
   // Test
   // *********************
-  addData(option) {
-    this.data.xAxis.push(option.xAxis);
-    option.series.forEach(a => {
-      this.data.series.forEach(b => {
-        if (a.name === b.name) {
-          b.data.push(a.data);
-        }
-      })
-    })
-    this.resetChart();
-    this.init();
-  }
-  resetChart() {
-    document.querySelector('svg').innerHTML = "";
-    this.svg = this.appendSvgEl(this.size);
-  }
+  // addData(option) {
+  //   this.data.xAxis.push(option.xAxis);
+  //   option.series.forEach(a => {
+  //     this.data.series.forEach(b => {
+  //       if (a.name === b.name) {
+  //         b.data.push(a.data);
+  //       }
+  //     })
+  //   })
+  //   this.resetChart();
+  //   this.init();
+  // }
+  // resetChart() {
+  //   document.querySelector('svg').innerHTML = "";
+  //   this.svg = this.appendSvgEl(this.size);
+  // }
 }

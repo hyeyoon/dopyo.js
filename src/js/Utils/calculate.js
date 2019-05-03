@@ -1,5 +1,6 @@
 import _v from '../utils/variables';
-module.exports = {
+
+export default {
   getArrayMax(array) {
     return Math.max(...array);
   },

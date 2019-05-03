@@ -7,4 +7,10 @@ export default {
   Y_AXIS_UNIT: 6,
   X_AXIS_LABEL_PADDING_MULTIPLE_TIMES: 1.5,
   Y_AXIS_LABEL_PADDING_MULTIPLE_TIMES: 1.6,
+  CHART_TYPES: {
+    LINE_CHART: 'line',
+    BAR_CHART: 'bar',
+    PIE_CHART: 'pie',
+    AREA_CHART: 'area'
+  }
 }
