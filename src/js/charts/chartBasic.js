@@ -10,9 +10,10 @@ export default class ChartBasic {
     this.data = data;
     this.options = options;
     this.svgEl = this.appendSvgEl(size);
+    this.tooltipEl = options.tooltip.show ? this.appendTooltipEl() : '';
     this.unit = _v.Y_AXIS_UNIT;
     this.digit = _v.DEFAULT_DIGIT;
-    this.colors = ['#60c5ba', '#47b8e0'];
+    this.colors = ['#60c5ba', '#47b8e0', '#205e74'];
   }
   appendSvgEl({width, height}) {
     const svgEl = _h.createElNS("svg", "http://www.w3.org/2000/svg");
@@ -20,6 +21,11 @@ export default class ChartBasic {
     svgEl.setAttribute("height", height);
     svgEl.setAttribute("viewBox", `0 0 ${width} ${height}`)
     return svgEl;
+  }
+  appendTooltipEl() {
+    const tooltipEl = _h.createEl("div");
+    tooltipEl.setAttribute("class", "tooltip");
+    return tooltipEl;
   }
   drawXAxis([padding, {width, height}]) {
     const axisLabel = {
@@ -100,11 +106,24 @@ export default class ChartBasic {
     this.svgEl.innerHTML += `<g class="grid y-axis-grid">${yAxisGrid}</g>`;
   }
   addTooltipEvent(e) {
-    if (e.target.nodeName.toLowerCase() !== 'circle') return;
+    if (e.target.nodeName.toLowerCase() !== 'circle') {
+      this.tooltipEl.style.left = `${_v.TOOLTIP_HIDE_LEFT_POSITION}px`;
+    }
     else {
+      const data = e.target.dataset;
+      this.tooltipEl.innerHTML = `
+        <h2 class="tooltip__title">${data.date}</h2>
+        <p class="tooltip__desc">
+          <span class="tooltip__line" style="background: ${data.color}"></span>
+          ${data.value}
+        </p>
+      `;
+      this.tooltipEl.style.left = `${e.pageX + _v.TOOLTIP_PADDINT_LEFT}px`;
+      this.tooltipEl.style.top = `${e.pageY + _v.TOOLTIP_PADDINT_TOP}px`;
     }
   }
-  drawChart(containerEl, svgEl) {
+  drawChart(containerEl, tooltipEl, svgEl) {
+    tooltipEl && containerEl.appendChild(tooltipEl);
     containerEl.appendChild(svgEl);
   }
 

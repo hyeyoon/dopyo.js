@@ -7,7 +7,7 @@ export default {
     const chartType = _h.findKey(_v.CHART_TYPES, type);
     switch(chartType) {
       case 'LINE_CHART':
-        this.lineChart({size, containerEl, data, options});
+        this.drawLineChart({size, containerEl, data, options});
         break;
       case 'BAR_CHART':
         break;
@@ -17,7 +17,7 @@ export default {
         break;
     }
   },
-  lineChart({size, containerEl, data, options}) {
+  drawLineChart({size, containerEl, data, options}) {
     const chart = new LineChart({size, containerEl, data, options});
     chart.render();
   }

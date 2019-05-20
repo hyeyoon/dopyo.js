@@ -13,8 +13,8 @@ export default class LineChart extends ChartBasic {
     this.drawYAxis([this.padding, this.size]);
     this.drawYAxisLabels([this.padding, this.size, this.data.series, this.unit, this.digit]);
     this.drawData([this.padding, this.size, this.data, this.unit, this.digit]);
-    _h.addEventToEl(this.svgEl, 'mouseover', this.addTooltipEvent);
-    this.drawChart(this.containerEl, this.svgEl);
+    this.tooltipEl && _h.addEventToEl(this.svgEl, 'mouseover', this.addTooltipEvent, this);
+    this.drawChart(this.containerEl, this.tooltipEl, this.svgEl);
   }
   drawData([padding, size, data, unit, digit]) {
     let max = _c.getArraysMax(_c.getDataSet(data.series));
@@ -38,15 +38,15 @@ export default class LineChart extends ChartBasic {
     this.svgEl.innerHTML += `
       <g class="data">
         ${this.drawLine(data.series)}
-        ${this.drawDots(data.series)}
+        ${this.drawDots(data.xAxis, data.series)}
       </g>
     `
   }
-  drawDots(series) {
+  drawDots(xAxis, series) {
     let dotsEl="";
     series.forEach((item, index) => {
       let dots = item.calculatedData.map((x, i) => {
-        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-value="${item.data[i]}" />`
+        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-color="${this.colors[index]}" data-date="${xAxis[i]}" data-value="${item.data[i]}" />`
       }).join("");
       dotsEl += `<g class="dots">${dots}</g>`;
     })
