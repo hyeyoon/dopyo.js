@@ -11,9 +11,9 @@ export default {
   createElNS(el, namespaceURI) {
     return document.createElementNS(namespaceURI, el);
   },
-  addEventToEl(el, type, fn) {
+  addEventToEl(el, type, fn, bindEl) {
     el.addEventListener(type, e => {
-      fn(e);
+      fn.call(bindEl, e);
     })
   },
   findKey(collection, key) {

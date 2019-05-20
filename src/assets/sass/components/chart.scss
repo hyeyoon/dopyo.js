@@ -80,8 +80,45 @@
       stroke-width: 4;
       stroke-dasharray: 2000;
       // stroke-dashoffset: 1000;
-      animation: dash 2s linear forwards;
+      animation: dash 1s linear forwards;
     }
+  }
+}
+
+.tooltip {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  left: -10000px;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: -14px;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-right-color: rgba(0, 0, 0, 0.6);
+  }
+  &__title {
+    margin: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+  &__desc {
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+  }
+  &__line {
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid #fff;
+    display: inline-block;
   }
 }
 

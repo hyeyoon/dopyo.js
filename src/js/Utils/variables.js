@@ -12,5 +12,8 @@ export default {
     BAR_CHART: 'bar',
     PIE_CHART: 'pie',
     AREA_CHART: 'area'
-  }
+  },
+  TOOLTIP_PADDINT_TOP: -20,
+  TOOLTIP_PADDINT_LEFT: 20,
+  TOOLTIP_HIDE_LEFT_POSITION: -10000,
 }
