@@ -123,6 +123,7 @@ export default class ChartBasic {
     }
   }
   drawChart(containerEl, tooltipEl, svgEl) {
+    containerEl.style.minWidth =  `${this.size.width}px`;
     tooltipEl && containerEl.appendChild(tooltipEl);
     containerEl.appendChild(svgEl);
   }

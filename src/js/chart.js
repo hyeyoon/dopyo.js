@@ -1,6 +1,8 @@
-import _h from '../utils/helper';
-import _v from '../utils/variables';
-import LineChart from './lineChart';
+import '../assets/sass/main.sass';
+
+import _h from './utils/helper';
+import _v from './utils/variables';
+import LineChart from './charts/lineChart';
 
 export default {
   createChart({type, size, containerEl, data, options}) {

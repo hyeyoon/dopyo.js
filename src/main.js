@@ -1,6 +1,5 @@
 import './assets/sass/main.sass';
-import ChartBasic from './js/charts/chartBasic';
-import chart from './js/charts/chart';
+import chart from './js/chart';
 
 if (module.hot) {
   module.hot.accept()
@@ -38,13 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       tooltip: {
         show: true,
-      },
-      xAxis: {
-
-      },
-      yAxis: {
-
-      },
+      }
     }
   });
 })

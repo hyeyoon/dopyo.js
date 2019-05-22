@@ -5,7 +5,6 @@
 }
 #chart {
   width: 100%;
-  border: 1px solid #32bebe;
 }
 .chart {
   margin: 0 auto;
@@ -133,10 +132,12 @@
 
 #dopyo-chart {
   margin: 20px;
+  padding: 20px 0;
+  box-shadow: 0px 1px 4px 3px #eee;
   svg {
     margin: 0 auto;
     padding: 0 20px;
-    border: 1px solid #32bebe;
+    display: block;
   }
 }
 
