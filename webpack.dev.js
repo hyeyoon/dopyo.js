@@ -1,10 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
-const merge = require('webpack-merge')
-const common = require('./webpack.common.js')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = merge(common, {
+module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
@@ -20,6 +18,13 @@ module.exports = merge(common, {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+        }
+      },
       {
         test: /\.(sass|scss)$/,
         use: [
@@ -59,4 +64,4 @@ module.exports = merge(common, {
       filename: 'index.html'
     })
   ]
-})
+}

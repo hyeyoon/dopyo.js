@@ -1,42 +1,28 @@
 const path = require('path')
 const merge = require('webpack-merge')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const common = require('./webpack.common.js')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-module.exports = merge(common, {
-  mode: 'production',
-  entry: {
-    "dopyo": path.resolve(__dirname, 'src/js/chart.js'),
-    "dopyo.min": path.resolve(__dirname, 'src/js/chart.js'),
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(sass|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader"
-        ]
-      }
+module.exports = [
+  merge(common, {
+    mode: 'development',
+    entry: {
+      "dopyo": path.resolve(__dirname, 'src/js/chart.js'),
+    },
+    plugins: [
+      new CleanWebpackPlugin(['dist']),
     ]
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [new UglifyJsPlugin({
-      include: /\.min\.js$/
-    })]
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-    })
-  ]
-})
+  }),
+  merge(common, {
+    mode: 'production',
+    entry: {
+      "dopyo.min": path.resolve(__dirname, 'src/js/chart.js'),
+    },
+    optimization: {
+      minimizer: [
+        new OptimizeCSSAssetsPlugin({}),
+      ]
+    },
+  })
+]

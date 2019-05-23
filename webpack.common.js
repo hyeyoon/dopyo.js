@@ -1,7 +1,11 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-// const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
@@ -11,41 +15,19 @@ module.exports = {
           loader: 'babel-loader',
         }
       },
-      // {
-      //   test: /\.(ico|png|jpg|jpeg|gif|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //   loader: 'url-loader',
-      //   options: {
-      //     name: '[name].[hash].[ext]',
-      //     limit: 10000,
-      //     outputPath: 'images/',
-      //   }
-      // },
-      // {
-      //   test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      //   loader: 'url-loader',
-      //   options: {
-      //     name: '[name].[hash].[ext]',
-      //     limit: 10000,
-      //     outputPath: 'fonts/',
-      //   },
-      // },
-      // {
-      //   test: /\.html$/,
-      //   use: [
-      //     {
-      //       loader: "html-loader",
-      //       options: { minimize: true }
-      //     }
-      //   ]
-      // }
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
+        ]
+      }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    // new HtmlWebpackPlugin({
-    //   hash: true,
-    //   template: './index.html',
-    //   filename: 'index.html'
-    // })
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    })
   ]
 }
