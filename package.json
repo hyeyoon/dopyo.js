@@ -8,6 +8,7 @@
     "build": "webpack --config webpack.prod.js",
     "test": "jest --config jest.config.js --watch"
   },
+  "main": "dist/dopyo",
   "keywords": [
     "chart",
     "svg"

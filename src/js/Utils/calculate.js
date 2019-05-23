@@ -42,12 +42,16 @@ export default {
   calculateYAxisGap(max, min, unit, digit) {
     let gap;
     let maxMinGap = Math.ceil(max - min);
-    if (maxMinGap < 25) {
+    if (maxMinGap <= 25) {
       gap = 5;
-    } else if (maxMinGap < 50) {
+    } else if (maxMinGap <= 50) {
       gap = 10;
-    } else if (maxMinGap < 100) {
+    } else if (maxMinGap <= 100) {
       gap = 20;
+    } else if (maxMinGap <= 150) {
+      gap = 30;
+    } else if (maxMinGap <= 200) {
+      gap = 40;
     } else {
       const multipleNum = Math.ceil(maxMinGap / 50 / 5);
       gap = multipleNum * 50;

@@ -7,7 +7,7 @@ if (module.hot) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const dopyo = chart.createChart({
-    type: 'line',
+    type: 'area',
     size: {
       width: 800,
       height: 600,
@@ -18,15 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
       series: [
         {
           name: '라인그래프1',
-          data: [0, 10, 0, 10, -100, 10, -100]
+          data: [0, 10, 20, 50, 30, 80, 150]
         },
         {
           name: '라인그래프2',
-          data: [20, -40, 15, 36, -20, 70, 50]
+          data: [20, 0, 15, 20, 70, 20, 80]
         },
         {
           name: '라인그래프3',
-          data: [20, 40, 15, 36, -50, 20, 50]
+          data: [10, 50, 10, 30, 50, 50, 40]
         },
       ]
     },

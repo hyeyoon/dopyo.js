@@ -30,44 +30,37 @@ export default class LineChart extends ChartBasic {
     data.series.forEach((item, index) => {
       item.calculatedData = item.data.map((y, i) => {
         return [
-          padding + (xAxisGap * i),
-          yAxisHeight - (y * standardYAxis.yCoordinate / standardYAxis.value) + - Math.round(standardYAxis.yCoordinate * zeroIndex)
+          Math.round(padding + (xAxisGap * i)),
+          Math.round(yAxisHeight - (y * standardYAxis.yCoordinate / standardYAxis.value) + - Math.round(standardYAxis.yCoordinate * zeroIndex))
         ];
       })
     })
-    this.svgEl.innerHTML += `
-      <g class="data">
-        ${this.drawLine(data.series)}
-        ${this.drawDots(data.xAxis, data.series)}
+    this.svgEl.innerHTML += data.series.map((item, index) => {
+      return `<g class="data">
+        ${this.drawLine(item, index)}
+        ${this.drawDots(data.xAxis, item, index)}
       </g>
-    `
+      `
+    }).join("")
   }
-  drawDots(xAxis, series) {
-    let dotsEl="";
-    series.forEach((item, index) => {
-      let dots = item.calculatedData.map((x, i) => {
-        return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-color="${this.colors[index]}" data-date="${xAxis[i]}" data-value="${item.data[i]}" />`
-      }).join("");
-      dotsEl += `<g class="dots">${dots}</g>`;
-    })
-    return dotsEl;
+  drawDots(xAxis, item, index) {
+    let dots = item.calculatedData.map((x, i) => {
+      return `<circle cx="${x[0]}" cy="${x[1]}" r="8" stroke="${this.colors[index]}" fill="#fff" data-color="${this.colors[index]}" data-date="${xAxis[i]}" data-value="${item.data[i]}" />`
+    }).join("");
+    return `<g class="dots">${dots}</g>`;
   }
-  drawLine(series) {
-    let lineEl="";
-    series.forEach((item, index) => {
-      let tmpLine = item.calculatedData.reduce((accum, curr, idx, array) => {
-        if (!Array.isArray(curr)) { return; }
-        else {
-          if (idx === 0) {
-            accum += 'M ';
-          } else if (idx === 1) {
-            accum += 'L ';
-          }
-          return accum += `${curr.join(",")} `;
+  drawLine(item, index) {
+    let tmpLine = item.calculatedData.reduce((accum, curr, idx, array) => {
+      if (!Array.isArray(curr)) { return; }
+      else {
+        if (idx === 0) {
+          accum += 'M ';
+        } else if (idx === 1) {
+          accum += 'L ';
         }
-      }, "");
-      lineEl += `<g class="line"><path fill="none" d="${tmpLine}" stroke="${this.colors[index]}" /></g>`;
-    })
-    return lineEl;
+        return accum += `${curr.join(",")} `;
+      }
+    }, "");
+    return `<g class="line"><path fill="none" d="${tmpLine}" stroke="${this.colors[index]}" /></g>`;
   }
 }
