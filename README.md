@@ -6,20 +6,29 @@
 ## :blue_book: Documentation
 [Documentaion](https://hyeyoon.github.io/dopyo.js/index.html)
 
-## :computer: Build Setup
+## :computer: Installation
 
-``` bash
-# install dependencies
-$ npm install
+### Direct
 
-# serve with hot reload at localhost:8080
-$ npm run dev
-
-# build for production
-$ npm run build
+```HTML
+<!-- Uncompressed -->
+<link rel="stylesheet" href="$YOUR_PATH/dopyo.css">
+<script src="$YOUR_PATH/dopyo.js"></script>
+<!-- Compressed -->
+<link rel="stylesheet" href="$YOUR_PATH/dopyo.min.css">
+<script src="$YOUR_PATH/dopyo.min.js"></script>
 ```
 
-## :pray: Contribution
+### NPM
+
+``` bash
+$ npm install dopyo.js
+```
+
+```javascript
+import 'dopyo.js/dist/dopyo.css';
+import { dopyo } from 'dopyo.js';
+```
 
 ## :pushpin: License
 [MIT](https://opensource.org/licenses/MIT)
