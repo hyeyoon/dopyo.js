@@ -38,7 +38,7 @@ export default class AreaChart extends LineChart {
   drawArea(item, index) {
     const { width, height } = this.size;
     const padding = this.padding;
-    let tmpCalculatedData = [...item.calculatedData, [width - padding, height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)], [padding, height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)]];
+    let tmpCalculatedData = [...item.calculatedData, [item.calculatedData[item.calculatedData.length - 1][0], height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)], [padding, height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)]];
     let tmpLine = tmpCalculatedData.reduce((accum, curr, idx, array) => {
       if (!Array.isArray(curr)) { return; }
       else {
