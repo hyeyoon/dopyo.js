@@ -2,6 +2,9 @@
 
 > Simple, lightweight javascript chart library.
 
+## Work in progress...🚧🛠
+Keep watching [develop branch](https://github.com/hyeyoon/dopyo.js/tree/develop) 
+
 ## Build Setup
 
 ``` bash
