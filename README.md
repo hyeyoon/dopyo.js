@@ -19,7 +19,7 @@ $ npm run dev
 $ npm run build
 ```
 
-## :octocat: Contribution
+## :pray: Contribution
 
 ## :pushpin: License
 [MIT](https://opensource.org/licenses/MIT)
