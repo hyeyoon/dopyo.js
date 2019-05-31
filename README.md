@@ -1,4 +1,4 @@
-<p align="center"><img src="/docs/assets/img/dopyo_js.png" alt="dopyo.js logo"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/hyeyoon/dopyo.js/develop/docs/assets/img/dopyo_js.png" alt="dopyo.js logo"></p>
 <h1 align="center">dopyo.js</h1>
 
 > Simple, lightweight javascript chart library.
