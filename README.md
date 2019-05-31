@@ -1,6 +1,5 @@
-# dopyo.js
-
-![dopyo.js]('https://raw.githubusercontent.com/hyeyoon/dopyo.js/blob/develop/docs/assets/img/dopyo_logo.png')
+<p align="center"><img src="/docs/assets/img/dopyo_js.png" alt="dopyo.js logo"></p>
+<h1 align="center">dopyo.js</h1>
 
 > Simple, lightweight javascript chart library.
 
