@@ -5,7 +5,7 @@ import _v from './utils/variables';
 import LineChart from './charts/lineChart';
 import AreaChart from './charts/areaChart';
 
-export default {
+const dopyo = {
   createChart({type, size, containerEl, data, options}) {
     const chartType = _h.findKey(_v.CHART_TYPES, type);
     switch(chartType) {
@@ -30,3 +30,5 @@ export default {
     chart.render();
   },
 }
+
+export { dopyo };

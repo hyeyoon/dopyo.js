@@ -3,130 +3,137 @@
   width: 100%;
   padding: 20px;
 }
-#chart {
+.dopyo-chart {
   width: 100%;
-}
-.chart {
-  margin: 0 auto;
-}
-.title {
-  text-align: center;
-}
-.axis {
-  text {
-    fill: #34314c;
-    stroke-width: 1;
-    stroke: #34314c;
+  .chart {
+    margin: 0 auto;
   }
-  line {
-    stroke: #ccc;
-    stroke-dasharray: 0;
-    stroke-width: 2;
+  .title {
+    text-align: center;
   }
-}
-.x-axis {
-  &-labels {
+  .axis {
     text {
-      alignment-baseline: middle;
-      text-anchor: middle;
+      fill: #34314c;
+      stroke-width: 1;
+      stroke: #34314c;
     }
-  }
-}
-.y-axis {
-  &-labels {
-    text {
-      alignment-baseline: middle;
-      text-anchor: end;
-    }
-  }
-  &-grid {
     line {
-      stroke: rgba(180, 180, 180, 80);
-      stroke-dasharray: 4;
+      stroke: #ccc;
+      stroke-dasharray: 0;
       stroke-width: 2;
-      &:first-child {
-        stroke-width: 0;
+    }
+  }
+  .x-axis {
+    &-labels {
+      text {
+        alignment-baseline: middle;
+        text-anchor: middle;
       }
     }
   }
-}
-.labels {
-  text {
-    fill: #aaa;
-  }
-  line {
-    stroke-width: 1;
-    stroke: #aaa;
-  }
-}
-.data {
-  .dots {
-    circle {
-      fill: #fff;
-      stroke-width: 4;
-      // stroke: #60c5ba;
-      transition: all ease 0.5s;
-      &:hover {
-        stroke-width: 6;
-        // transform: scale(2, 2);
+  .y-axis {
+    &-labels {
+      text {
+        alignment-baseline: middle;
+        text-anchor: end;
+      }
+    }
+    &-grid {
+      line {
+        stroke: rgba(180, 180, 180, 80);
+        stroke-dasharray: 4;
+        stroke-width: 2;
+        &:first-child {
+          stroke-width: 0;
+        }
       }
     }
   }
-  .line {
-    path {
-      fill: none;
-      // stroke: #60c5ba;
-      stroke-width: 4;
-      stroke-dasharray: 2000;
-      // stroke-dashoffset: 1000;
-      animation: dash 1s linear forwards;
+  .labels {
+    text {
+      fill: #aaa;
+    }
+    line {
+      stroke-width: 1;
+      stroke: #aaa;
     }
   }
-}
+  .data {
+    .dots {
+      circle {
+        fill: #fff;
+        stroke-width: 4;
+        // stroke: #60c5ba;
+        transition: all ease 0.5s;
+        &:hover {
+          stroke-width: 6;
+          // transform: scale(2, 2);
+        }
+      }
+    }
+    .line {
+      path {
+        fill: none;
+        // stroke: #60c5ba;
+        stroke-width: 4;
+        stroke-dasharray: 2000;
+        // stroke-dashoffset: 1000;
+        animation: dash 1s linear forwards;
+      }
+    }
+  }
 
-.tooltip {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  left: -10000px;
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 8px;
-    left: -14px;
-    width: 0;
-    height: 0;
-    border: 7px solid transparent;
-    border-right-color: rgba(0, 0, 0, 0.6);
+  .tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    left: -10000px;
+    z-index: 999;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 8px;
+      left: -14px;
+      width: 0;
+      height: 0;
+      border: 7px solid transparent;
+      border-right-color: rgba(0, 0, 0, 0.6);
+    }
+    &__title {
+      margin: 10px;
+      font-size: 14px;
+      color: #fff;
+    }
+    &__desc {
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff;
+    }
+    &__line {
+      margin-right: 10px;
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid #fff;
+      display: inline-block;
+    }
   }
-  &__title {
-    margin: 10px;
-    font-size: 14px;
-    color: #fff;
-  }
-  &__desc {
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: #fff;
-  }
-  &__line {
-    margin-right: 10px;
-    width: 15px;
-    height: 15px;
-    border: 1.5px solid #fff;
-    display: inline-block;
-  }
-}
 
-@keyframes dash {
-  from {
-    stroke-dashoffset: 2000;
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 2000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
-  to {
-    stroke-dashoffset: 0;
+
+
+  .add {
+    border: 2px solid #32bebe;
+    padding: 5px;
   }
 }
 
@@ -139,9 +146,4 @@
     padding: 0 20px;
     display: block;
   }
-}
-
-.add {
-  border: 2px solid #32bebe;
-  padding: 5px;
 }

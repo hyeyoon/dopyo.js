@@ -1,16 +1,16 @@
 import './assets/sass/main.sass';
-import chart from './js/chart';
+import { dopyo } from './js/chart';
 
 if (module.hot) {
   module.hot.accept()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const dopyo = chart.createChart({
+  const chart = dopyo.createChart({
     type: 'area',
     size: {
-      width: 800,
-      height: 600,
+      width: 600,
+      height: 400,
     },
     containerEl: '#dopyo-chart',
     data: {
@@ -31,10 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
       ]
     },
     options: {
-      title: {
+      xAxis: {
         show: false,
-        text: '차트 이름',
       },
+      yAxis: {
+        show: true,
+        title: 'y축 이름'
+      },
+      // title: {
+      //   show: false,
+      //   text: '차트 이름',
+      // },
       tooltip: {
         show: true,
       }

@@ -42,9 +42,10 @@ export default class ChartBasic {
         y: height - (padding * _v.DEFAULT_PADDING_MULTIPLE_TIMES)
       }
     };
+    const xAxisLabel = (this.options.xAxis.show) ? `<text x="${axisLabel.x}" y="${axisLabel.y}">${this.options.xAxis.title}</text>` : "";
     this.svgEl.innerHTML += `
       <g class="axis x-axis">
-        <text x="${axisLabel.x}" y="${axisLabel.y}">x축 이름</text>
+        ${xAxisLabel}
         <line x1="${axisLine.left.x}" x2="${axisLine.right.x}" y1="${axisLine.left.y}" y2="${axisLine.right.y}" />
       </g>
     `;
@@ -75,9 +76,10 @@ export default class ChartBasic {
         y: padding
       }
     };
+    const yAxisLabel = (this.options.yAxis.show) ? `<text x="${axisLabel.x}" y="${axisLabel.y}">${this.options.yAxis.title}</text>` : "";
     this.svgEl.innerHTML += `
       <g class="axis y-axis">
-        <text x="${axisLabel.x}" y="${axisLabel.y}">y축 이름</text>
+        ${yAxisLabel}
         <line x1="${axisLine.left.x}" x2="${axisLine.right.x}" y1="${axisLine.left.y}" y2="${axisLine.right.y}" />
       </g>
     `;
@@ -118,11 +120,12 @@ export default class ChartBasic {
           ${data.value}
         </p>
       `;
-      this.tooltipEl.style.left = `${e.pageX + _v.TOOLTIP_PADDINT_LEFT}px`;
-      this.tooltipEl.style.top = `${e.pageY + _v.TOOLTIP_PADDINT_TOP}px`;
+      this.tooltipEl.style.left = `${e.clientX + _v.TOOLTIP_PADDINT_LEFT}px`;
+      this.tooltipEl.style.top = `${e.clientY + _v.TOOLTIP_PADDINT_TOP}px`;
     }
   }
   drawChart(containerEl, tooltipEl, svgEl) {
+    containerEl.classList.add('dopyo-chart');
     containerEl.style.minWidth =  `${this.size.width}px`;
     tooltipEl && containerEl.appendChild(tooltipEl);
     containerEl.appendChild(svgEl);
