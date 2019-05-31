@@ -308,97 +308,89 @@ template {
   width: 100%;
   padding: 20px; }
 
-#chart {
+.dopyo-chart {
   width: 100%; }
-
-.chart {
-  margin: 0 auto; }
-
-.title {
-  text-align: center; }
-
-.axis text {
-  fill: #34314c;
-  stroke-width: 1;
-  stroke: #34314c; }
-
-.axis line {
-  stroke: #ccc;
-  stroke-dasharray: 0;
-  stroke-width: 2; }
-
-.x-axis-labels text {
-  alignment-baseline: middle;
-  text-anchor: middle; }
-
-.y-axis-labels text {
-  alignment-baseline: middle;
-  text-anchor: end; }
-
-.y-axis-grid line {
-  stroke: #b4b4b4;
-  stroke-dasharray: 4;
-  stroke-width: 2; }
-  .y-axis-grid line:first-child {
-    stroke-width: 0; }
-
-.labels text {
-  fill: #aaa; }
-
-.labels line {
-  stroke-width: 1;
-  stroke: #aaa; }
-
-.data .dots circle {
-  fill: #fff;
-  stroke-width: 4;
-  transition: all ease 0.5s; }
-  .data .dots circle:hover {
-    stroke-width: 6; }
-
-.data .line path {
-  fill: none;
-  stroke-width: 4;
-  stroke-dasharray: 2000;
-  animation: dash 1s linear forwards; }
-
-.tooltip {
-  position: fixed;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  left: -10000px; }
-  .tooltip::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 8px;
-    left: -14px;
-    width: 0;
-    height: 0;
-    border: 7px solid transparent;
-    border-right-color: rgba(0, 0, 0, 0.6); }
-  .tooltip__title {
-    margin: 10px;
-    font-size: 14px;
-    color: #fff; }
-  .tooltip__desc {
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    color: #fff; }
-  .tooltip__line {
-    margin-right: 10px;
-    width: 15px;
-    height: 15px;
-    border: 1.5px solid #fff;
-    display: inline-block; }
+  .dopyo-chart .chart {
+    margin: 0 auto; }
+  .dopyo-chart .title {
+    text-align: center; }
+  .dopyo-chart .axis text {
+    fill: #34314c;
+    stroke-width: 1;
+    stroke: #34314c; }
+  .dopyo-chart .axis line {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 2; }
+  .dopyo-chart .x-axis-labels text {
+    alignment-baseline: middle;
+    text-anchor: middle; }
+  .dopyo-chart .y-axis-labels text {
+    alignment-baseline: middle;
+    text-anchor: end; }
+  .dopyo-chart .y-axis-grid line {
+    stroke: #b4b4b4;
+    stroke-dasharray: 4;
+    stroke-width: 2; }
+    .dopyo-chart .y-axis-grid line:first-child {
+      stroke-width: 0; }
+  .dopyo-chart .labels text {
+    fill: #aaa; }
+  .dopyo-chart .labels line {
+    stroke-width: 1;
+    stroke: #aaa; }
+  .dopyo-chart .data .dots circle {
+    fill: #fff;
+    stroke-width: 4;
+    transition: all ease 0.5s; }
+    .dopyo-chart .data .dots circle:hover {
+      stroke-width: 6; }
+  .dopyo-chart .data .line path {
+    fill: none;
+    stroke-width: 4;
+    stroke-dasharray: 2000;
+    animation: dash 1s linear forwards; }
+  .dopyo-chart .tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    left: -10000px;
+    z-index: 999; }
+    .dopyo-chart .tooltip::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 8px;
+      left: -14px;
+      width: 0;
+      height: 0;
+      border: 7px solid transparent;
+      border-right-color: rgba(0, 0, 0, 0.6); }
+    .dopyo-chart .tooltip__title {
+      margin: 10px;
+      font-size: 14px;
+      color: #fff; }
+    .dopyo-chart .tooltip__desc {
+      margin: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff; }
+    .dopyo-chart .tooltip__line {
+      margin-right: 10px;
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid #fff;
+      display: inline-block; }
 
 @keyframes dash {
   from {
     stroke-dashoffset: 2000; }
   to {
     stroke-dashoffset: 0; } }
+  .dopyo-chart .add {
+    border: 2px solid #32bebe;
+    padding: 5px; }
 
 #dopyo-chart {
   margin: 20px;
@@ -408,8 +400,4 @@ template {
     margin: 0 auto;
     padding: 0 20px;
     display: block; }
-
-.add {
-  border: 2px solid #32bebe;
-  padding: 5px; }
 

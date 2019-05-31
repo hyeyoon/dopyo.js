@@ -1,4 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -81,92 +91,731 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/chart.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ "./src/assets/sass/main.sass":
-/*!***********************************!*\
-  !*** ./src/assets/sass/main.sass ***!
-  \***********************************/
-/*! no static exports found */
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/assets/sass/main.sass?");
+// extracted by mini-css-extract-plugin
 
 /***/ }),
-
-/***/ "./src/js/chart.js":
-/*!*************************!*\
-  !*** ./src/js/chart.js ***!
-  \*************************/
-/*! exports provided: default */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_sass_main_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../assets/sass/main.sass */ \"./src/assets/sass/main.sass\");\n/* harmony import */ var _assets_sass_main_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_sass_main_sass__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/helper */ \"./src/js/utils/helper.js\");\n/* harmony import */ var _utils_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/variables */ \"./src/js/utils/variables.js\");\n/* harmony import */ var _charts_lineChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./charts/lineChart */ \"./src/js/charts/lineChart.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  createChart: function createChart(_ref) {\n    var type = _ref.type,\n        size = _ref.size,\n        containerEl = _ref.containerEl,\n        data = _ref.data,\n        options = _ref.options;\n\n    var chartType = _utils_helper__WEBPACK_IMPORTED_MODULE_1__[\"default\"].findKey(_utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].CHART_TYPES, type);\n\n    switch (chartType) {\n      case 'LINE_CHART':\n        this.drawLineChart({\n          size: size,\n          containerEl: containerEl,\n          data: data,\n          options: options\n        });\n        break;\n\n      case 'BAR_CHART':\n        break;\n\n      case 'PIE_CHART':\n        break;\n\n      case 'AREA_CHART':\n        break;\n    }\n  },\n  drawLineChart: function drawLineChart(_ref2) {\n    var size = _ref2.size,\n        containerEl = _ref2.containerEl,\n        data = _ref2.data,\n        options = _ref2.options;\n    var chart = new _charts_lineChart__WEBPACK_IMPORTED_MODULE_3__[\"default\"]({\n      size: size,\n      containerEl: containerEl,\n      data: data,\n      options: options\n    });\n    chart.render();\n  }\n});\n\n//# sourceURL=webpack:///./src/js/chart.js?");
+__webpack_require__.r(__webpack_exports__);
 
-/***/ }),
+// EXTERNAL MODULE: ./src/assets/sass/main.sass
+var main = __webpack_require__(0);
 
-/***/ "./src/js/charts/chartBasic.js":
-/*!*************************************!*\
-  !*** ./src/js/charts/chartBasic.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+// CONCATENATED MODULE: ./src/js/utils/helper.js
+/* harmony default export */ var helper = ({
+  pipe: function pipe() {
+    for (var _len = arguments.length, functions = new Array(_len), _key = 0; _key < _len; _key++) {
+      functions[_key] = arguments[_key];
+    }
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return ChartBasic; });\n/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helper */ \"./src/js/utils/helper.js\");\n/* harmony import */ var _utils_calculate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/calculate */ \"./src/js/utils/calculate.js\");\n/* harmony import */ var _utils_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/variables */ \"./src/js/utils/variables.js\");\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); }\n\nfunction _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\n\n\n\n\nvar ChartBasic =\n/*#__PURE__*/\nfunction () {\n  function ChartBasic(_ref) {\n    var padding = _ref.padding,\n        type = _ref.type,\n        size = _ref.size,\n        containerEl = _ref.containerEl,\n        data = _ref.data,\n        options = _ref.options;\n\n    _classCallCheck(this, ChartBasic);\n\n    this.padding = !options.hasOwnProperty(padding) ? _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING : padding;\n    this.size = size;\n    this.containerEl = _utils_helper__WEBPACK_IMPORTED_MODULE_0__[\"default\"].selectEl(containerEl);\n    this.data = data;\n    this.options = options;\n    this.svgEl = this.appendSvgEl(size);\n    this.tooltipEl = options.tooltip.show ? this.appendTooltipEl() : '';\n    this.unit = _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].Y_AXIS_UNIT;\n    this.digit = _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_DIGIT;\n    this.colors = ['#60c5ba', '#47b8e0', '#205e74'];\n  }\n\n  _createClass(ChartBasic, [{\n    key: \"appendSvgEl\",\n    value: function appendSvgEl(_ref2) {\n      var width = _ref2.width,\n          height = _ref2.height;\n\n      var svgEl = _utils_helper__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createElNS(\"svg\", \"http://www.w3.org/2000/svg\");\n\n      svgEl.setAttribute(\"width\", width);\n      svgEl.setAttribute(\"height\", height);\n      svgEl.setAttribute(\"viewBox\", \"0 0 \".concat(width, \" \").concat(height));\n      return svgEl;\n    }\n  }, {\n    key: \"appendTooltipEl\",\n    value: function appendTooltipEl() {\n      var tooltipEl = _utils_helper__WEBPACK_IMPORTED_MODULE_0__[\"default\"].createEl(\"div\");\n\n      tooltipEl.setAttribute(\"class\", \"tooltip\");\n      return tooltipEl;\n    }\n  }, {\n    key: \"drawXAxis\",\n    value: function drawXAxis(_ref3) {\n      var _ref4 = _slicedToArray(_ref3, 2),\n          padding = _ref4[0],\n          _ref4$ = _ref4[1],\n          width = _ref4$.width,\n          height = _ref4$.height;\n\n      var axisLabel = {\n        x: width - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES,\n        y: height - padding / _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_DIVISION_TIMES\n      };\n      var axisLine = {\n        left: {\n          x: padding,\n          y: height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES\n        },\n        right: {\n          x: width - padding,\n          y: height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES\n        }\n      };\n      this.svgEl.innerHTML += \"\\n      <g class=\\\"axis x-axis\\\">\\n        <text x=\\\"\".concat(axisLabel.x, \"\\\" y=\\\"\").concat(axisLabel.y, \"\\\">x\\uCD95 \\uC774\\uB984</text>\\n        <line x1=\\\"\").concat(axisLine.left.x, \"\\\" x2=\\\"\").concat(axisLine.right.x, \"\\\" y1=\\\"\").concat(axisLine.left.y, \"\\\" y2=\\\"\").concat(axisLine.right.y, \"\\\" />\\n      </g>\\n    \");\n    }\n  }, {\n    key: \"drawXAxisLabels\",\n    value: function drawXAxisLabels(_ref5) {\n      var _ref6 = _slicedToArray(_ref5, 3),\n          padding = _ref6[0],\n          size = _ref6[1],\n          xAxisData = _ref6[2];\n\n      var xAxisWidth = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getXAxisWidth(size.width, padding);\n\n      var gap = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].calculateXAxisGap(xAxisWidth, xAxisData.length);\n\n      var xAxisLabels = xAxisData.map(function (data, index) {\n        return \"\\n        <text x=\\\"\".concat(padding + gap * index, \"\\\" y=\\\"\").concat(size.height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].X_AXIS_LABEL_PADDING_MULTIPLE_TIMES, \"\\\">\").concat(data, \"</text>\\n        <line x1=\\\"\").concat(padding + gap * index, \"\\\" x2=\\\"\").concat(padding + gap * index, \"\\\" y1=\\\"\").concat(size.height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES, \"\\\" y2=\\\"\").concat(size.height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES + _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].AXIS_LABEL_LINE_SIZE, \"\\\" />\\n      \");\n      }).join(\"\");\n      this.svgEl.innerHTML += \"<g class=\\\"labels x-axis-labels\\\">\".concat(xAxisLabels, \"</g>\");\n    }\n  }, {\n    key: \"drawYAxis\",\n    value: function drawYAxis(_ref7) {\n      var _ref8 = _slicedToArray(_ref7, 2),\n          padding = _ref8[0],\n          _ref8$ = _ref8[1],\n          width = _ref8$.width,\n          height = _ref8$.height;\n\n      var axisLabel = {\n        x: 0,\n        y: padding / _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_DIVISION_TIMES\n      };\n      var axisLine = {\n        left: {\n          x: padding,\n          y: height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES\n        },\n        right: {\n          x: padding,\n          y: padding\n        }\n      };\n      this.svgEl.innerHTML += \"\\n      <g class=\\\"axis y-axis\\\">\\n        <text x=\\\"\".concat(axisLabel.x, \"\\\" y=\\\"\").concat(axisLabel.y, \"\\\">y\\uCD95 \\uC774\\uB984</text>\\n        <line x1=\\\"\").concat(axisLine.left.x, \"\\\" x2=\\\"\").concat(axisLine.right.x, \"\\\" y1=\\\"\").concat(axisLine.left.y, \"\\\" y2=\\\"\").concat(axisLine.right.y, \"\\\" />\\n      </g>\\n    \");\n    }\n  }, {\n    key: \"drawYAxisLabels\",\n    value: function drawYAxisLabels(_ref9) {\n      var _ref10 = _slicedToArray(_ref9, 5),\n          padding = _ref10[0],\n          size = _ref10[1],\n          series = _ref10[2],\n          unit = _ref10[3],\n          digit = _ref10[4];\n\n      var showGrid = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;\n\n      var max = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getArraysMax(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getDataSet(series));\n\n      var min = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getArraysMin(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getDataSet(series)) < 0 ? _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getArraysMin(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getDataSet(series)) : 0;\n\n      var yAxisHeight = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getYAxisHeight(size.height, padding);\n\n      var yAxisData = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].calculateYAxis(max, min, unit, digit);\n\n      var yAxisLabels = yAxisData.map(function (data, index) {\n        return \"\\n        <text x=\\\"\".concat(padding / _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].DEFAULT_PADDING_DIVISION_TIMES * _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].Y_AXIS_LABEL_PADDING_MULTIPLE_TIMES, \"\\\" y=\\\"\").concat(yAxisHeight - yAxisHeight / unit * index, \"\\\">\").concat(data, \"</text>\\n        <line x1=\\\"\").concat(padding - _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].AXIS_LABEL_LINE_SIZE, \"\\\" x2=\\\"\").concat(padding, \"\\\" y1=\\\"\").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), \"\\\" y2=\\\"\").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), \"\\\" />\\n      \");\n      }).join(\"\");\n      this.svgEl.innerHTML += \"<g class=\\\"labels y-axis-labels\\\">\".concat(yAxisLabels, \"</g>\");\n\n      if (showGrid) {\n        this.drawYAxisGrid({\n          padding: padding,\n          size: size,\n          yAxisData: yAxisData,\n          unit: unit\n        });\n      }\n    }\n  }, {\n    key: \"drawYAxisGrid\",\n    value: function drawYAxisGrid(_ref11) {\n      var padding = _ref11.padding,\n          size = _ref11.size,\n          yAxisData = _ref11.yAxisData,\n          unit = _ref11.unit;\n\n      var yAxisHeight = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getYAxisHeight(size.height, padding);\n\n      var yAxisGrid = yAxisData.map(function (data, index) {\n        return \"<line x1=\\\"\".concat(padding, \"\\\" x2=\\\"\").concat(size.width - padding, \"\\\" y1=\\\"\").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), \"\\\" y2=\\\"\").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), \"\\\" />\");\n      }).join(\"\");\n      this.svgEl.innerHTML += \"<g class=\\\"grid y-axis-grid\\\">\".concat(yAxisGrid, \"</g>\");\n    }\n  }, {\n    key: \"addTooltipEvent\",\n    value: function addTooltipEvent(e) {\n      if (e.target.nodeName.toLowerCase() !== 'circle') {\n        this.tooltipEl.style.left = \"\".concat(_utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].TOOLTIP_HIDE_LEFT_POSITION, \"px\");\n      } else {\n        var data = e.target.dataset;\n        this.tooltipEl.innerHTML = \"\\n        <h2 class=\\\"tooltip__title\\\">\".concat(data.date, \"</h2>\\n        <p class=\\\"tooltip__desc\\\">\\n          <span class=\\\"tooltip__line\\\" style=\\\"background: \").concat(data.color, \"\\\"></span>\\n          \").concat(data.value, \"\\n        </p>\\n      \");\n        this.tooltipEl.style.left = \"\".concat(e.pageX + _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].TOOLTIP_PADDINT_LEFT, \"px\");\n        this.tooltipEl.style.top = \"\".concat(e.pageY + _utils_variables__WEBPACK_IMPORTED_MODULE_2__[\"default\"].TOOLTIP_PADDINT_TOP, \"px\");\n      }\n    }\n  }, {\n    key: \"drawChart\",\n    value: function drawChart(containerEl, tooltipEl, svgEl) {\n      containerEl.style.minWidth = \"\".concat(this.size.width, \"px\");\n      tooltipEl && containerEl.appendChild(tooltipEl);\n      containerEl.appendChild(svgEl);\n    } // *********************\n    // Test\n    // *********************\n    // addData(option) {\n    //   this.data.xAxis.push(option.xAxis);\n    //   option.series.forEach(a => {\n    //     this.data.series.forEach(b => {\n    //       if (a.name === b.name) {\n    //         b.data.push(a.data);\n    //       }\n    //     })\n    //   })\n    //   this.resetChart();\n    //   this.init();\n    // }\n    // resetChart() {\n    //   document.querySelector('svg').innerHTML = \"\";\n    //   this.svg = this.appendSvgEl(this.size);\n    // }\n\n  }]);\n\n  return ChartBasic;\n}();\n\n\n\n//# sourceURL=webpack:///./src/js/charts/chartBasic.js?");
+    return function (args) {
+      return functions.reduce(function (arg, nextFn) {
+        return nextFn(arg);
+      }, args);
+    };
+  },
+  selectEl: function selectEl(selector) {
+    return document.querySelector(selector);
+  },
+  createEl: function createEl(el) {
+    return document.createElement(el);
+  },
+  createElNS: function createElNS(el, namespaceURI) {
+    return document.createElementNS(namespaceURI, el);
+  },
+  addEventToEl: function addEventToEl(el, type, fn, bindEl) {
+    el.addEventListener(type, function (e) {
+      fn.call(bindEl, e);
+    });
+  },
+  findKey: function findKey(collection, key) {
+    for (var item in collection) {
+      if (collection[item] === key) {
+        return item;
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./src/js/utils/variables.js
+/* harmony default export */ var variables = ({
+  DEFAULT_PADDING: 40,
+  DEFAULT_PADDING_MULTIPLE_TIMES: 2,
+  DEFAULT_PADDING_DIVISION_TIMES: 2,
+  DEFAULT_DIGIT: 10,
+  AXIS_LABEL_LINE_SIZE: 5,
+  Y_AXIS_UNIT: 6,
+  X_AXIS_LABEL_PADDING_MULTIPLE_TIMES: 1.5,
+  Y_AXIS_LABEL_PADDING_MULTIPLE_TIMES: 1.6,
+  CHART_TYPES: {
+    LINE_CHART: 'line',
+    BAR_CHART: 'bar',
+    PIE_CHART: 'pie',
+    AREA_CHART: 'area'
+  },
+  TOOLTIP_PADDINT_TOP: -20,
+  TOOLTIP_PADDINT_LEFT: 20,
+  TOOLTIP_HIDE_LEFT_POSITION: -10000
+});
+// CONCATENATED MODULE: ./src/js/utils/calculate.js
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
-/***/ }),
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
 
-/***/ "./src/js/charts/lineChart.js":
-/*!************************************!*\
-  !*** ./src/js/charts/lineChart.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return LineChart; });\n/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/helper */ \"./src/js/utils/helper.js\");\n/* harmony import */ var _utils_calculate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/calculate */ \"./src/js/utils/calculate.js\");\n/* harmony import */ var _utils_variables__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/variables */ \"./src/js/utils/variables.js\");\n/* harmony import */ var _chartBasic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chartBasic */ \"./src/js/charts/chartBasic.js\");\nfunction _typeof(obj) { if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }\n\nfunction _nonIterableRest() { throw new TypeError(\"Invalid attempt to destructure non-iterable instance\"); }\n\nfunction _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i[\"return\"] != null) _i[\"return\"](); } finally { if (_d) throw _e; } } return _arr; }\n\nfunction _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\n\n\n\n\n\nvar LineChart =\n/*#__PURE__*/\nfunction (_ChartBasic) {\n  _inherits(LineChart, _ChartBasic);\n\n  function LineChart(_ref) {\n    var size = _ref.size,\n        containerEl = _ref.containerEl,\n        data = _ref.data,\n        options = _ref.options;\n\n    _classCallCheck(this, LineChart);\n\n    return _possibleConstructorReturn(this, _getPrototypeOf(LineChart).call(this, {\n      size: size,\n      containerEl: containerEl,\n      data: data,\n      options: options\n    }));\n  }\n\n  _createClass(LineChart, [{\n    key: \"render\",\n    value: function render() {\n      this.drawXAxis([this.padding, this.size]);\n      this.drawXAxisLabels([this.padding, this.size, this.data.xAxis]);\n      this.drawYAxis([this.padding, this.size]);\n      this.drawYAxisLabels([this.padding, this.size, this.data.series, this.unit, this.digit]);\n      this.drawData([this.padding, this.size, this.data, this.unit, this.digit]);\n      this.tooltipEl && _utils_helper__WEBPACK_IMPORTED_MODULE_0__[\"default\"].addEventToEl(this.svgEl, 'mouseover', this.addTooltipEvent, this);\n      this.drawChart(this.containerEl, this.tooltipEl, this.svgEl);\n    }\n  }, {\n    key: \"drawData\",\n    value: function drawData(_ref2) {\n      var _ref3 = _slicedToArray(_ref2, 5),\n          padding = _ref3[0],\n          size = _ref3[1],\n          data = _ref3[2],\n          unit = _ref3[3],\n          digit = _ref3[4];\n\n      var max = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getArraysMax(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getDataSet(data.series));\n\n      var min = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getArraysMin(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getDataSet(data.series)) < 0 ? _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getArraysMin(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getDataSet(data.series)) : 0;\n\n      var yAxisData = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].calculateYAxis(max, min, unit, digit);\n\n      var yAxisHeight = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getYAxisHeight(size.height, padding);\n\n      var standardYAxis = {\n        value: _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].calculateYAxisGap(max, min, unit, digit),\n        yCoordinate: yAxisHeight / unit\n      };\n      var zeroIndex = yAxisData.findIndex(function (num) {\n        return num === 0;\n      });\n\n      var xAxisGap = _utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].calculateXAxisGap(_utils_calculate__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getXAxisWidth(size.width, padding), data.xAxis.length);\n\n      data.series.forEach(function (item, index) {\n        item.calculatedData = item.data.map(function (y, i) {\n          return [padding + xAxisGap * i, yAxisHeight - y * standardYAxis.yCoordinate / standardYAxis.value + -Math.round(standardYAxis.yCoordinate * zeroIndex)];\n        });\n      });\n      this.svgEl.innerHTML += \"\\n      <g class=\\\"data\\\">\\n        \".concat(this.drawLine(data.series), \"\\n        \").concat(this.drawDots(data.xAxis, data.series), \"\\n      </g>\\n    \");\n    }\n  }, {\n    key: \"drawDots\",\n    value: function drawDots(xAxis, series) {\n      var _this = this;\n\n      var dotsEl = \"\";\n      series.forEach(function (item, index) {\n        var dots = item.calculatedData.map(function (x, i) {\n          return \"<circle cx=\\\"\".concat(x[0], \"\\\" cy=\\\"\").concat(x[1], \"\\\" r=\\\"8\\\" stroke=\\\"\").concat(_this.colors[index], \"\\\" fill=\\\"#fff\\\" data-color=\\\"\").concat(_this.colors[index], \"\\\" data-date=\\\"\").concat(xAxis[i], \"\\\" data-value=\\\"\").concat(item.data[i], \"\\\" />\");\n        }).join(\"\");\n        dotsEl += \"<g class=\\\"dots\\\">\".concat(dots, \"</g>\");\n      });\n      return dotsEl;\n    }\n  }, {\n    key: \"drawLine\",\n    value: function drawLine(series) {\n      var _this2 = this;\n\n      var lineEl = \"\";\n      series.forEach(function (item, index) {\n        var tmpLine = item.calculatedData.reduce(function (accum, curr, idx, array) {\n          if (!Array.isArray(curr)) {\n            return;\n          } else {\n            if (idx === 0) {\n              accum += 'M ';\n            } else if (idx === 1) {\n              accum += 'L ';\n            }\n\n            return accum += \"\".concat(curr.join(\",\"), \" \");\n          }\n        }, \"\");\n        lineEl += \"<g class=\\\"line\\\"><path fill=\\\"none\\\" d=\\\"\".concat(tmpLine, \"\\\" stroke=\\\"\").concat(_this2.colors[index], \"\\\" /></g>\");\n      });\n      return lineEl;\n    }\n  }]);\n\n  return LineChart;\n}(_chartBasic__WEBPACK_IMPORTED_MODULE_3__[\"default\"]);\n\n\n\n//# sourceURL=webpack:///./src/js/charts/lineChart.js?");
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
-/***/ }),
 
-/***/ "./src/js/utils/calculate.js":
-/*!***********************************!*\
-  !*** ./src/js/utils/calculate.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/* harmony default export */ var calculate = ({
+  getArrayMax: function getArrayMax(array) {
+    return Math.max.apply(Math, _toConsumableArray(array));
+  },
+  getArraysMax: function getArraysMax(arraySet) {
+    var _this = this;
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_variables__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/variables */ \"./src/js/utils/variables.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  getArrayMax: function getArrayMax(array) {\n    return Math.max.apply(Math, _toConsumableArray(array));\n  },\n  getArraysMax: function getArraysMax(arraySet) {\n    var _this = this;\n\n    return Math.max.apply(Math, _toConsumableArray(arraySet.map(function (array) {\n      return _this.getArrayMax(array);\n    })));\n  },\n  getArrayMin: function getArrayMin(array) {\n    return Math.min.apply(Math, _toConsumableArray(array));\n  },\n  getArraysMin: function getArraysMin(arraySet) {\n    var _this2 = this;\n\n    return Math.min.apply(Math, _toConsumableArray(arraySet.map(function (array) {\n      return _this2.getArrayMin(array);\n    })));\n  },\n  getDataSet: function getDataSet(series) {\n    return series.map(function (item) {\n      return item.data;\n    });\n  },\n  getNegativeMinNum: function getNegativeMinNum(num, gap) {\n    return Math.floor(num / gap) * gap;\n  },\n  getXAxisWidth: function getXAxisWidth(width, padding) {\n    return width - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES;\n  },\n  getYAxisHeight: function getYAxisHeight(height, padding) {\n    return height - padding * _utils_variables__WEBPACK_IMPORTED_MODULE_0__[\"default\"].DEFAULT_PADDING_MULTIPLE_TIMES;\n  },\n  calculateXAxisGap: function calculateXAxisGap(xAxisWidth, length) {\n    return Math.floor(xAxisWidth / (length - 1));\n  },\n  calculateYAxis: function calculateYAxis(max, min, unit, digit) {\n    var gap = this.calculateYAxisGap(max, min, unit, digit);\n\n    if (min < 0) {\n      min = this.getNegativeMinNum(min, gap);\n    }\n\n    var yAxisData = [];\n\n    for (var i = 0; i < unit; i++) {\n      yAxisData.push(min + i * gap);\n    }\n\n    return yAxisData;\n  },\n  calculateYAxisGap: function calculateYAxisGap(max, min, unit, digit) {\n    var gap;\n    var maxMinGap = Math.ceil(max - min);\n\n    if (maxMinGap < 25) {\n      gap = 5;\n    } else if (maxMinGap < 50) {\n      gap = 10;\n    } else if (maxMinGap < 100) {\n      gap = 20;\n    } else {\n      var multipleNum = Math.ceil(maxMinGap / 50 / 5);\n      gap = multipleNum * 50;\n    }\n\n    return gap;\n  }\n});\n\n//# sourceURL=webpack:///./src/js/utils/calculate.js?");
+    return Math.max.apply(Math, _toConsumableArray(arraySet.map(function (array) {
+      return _this.getArrayMax(array);
+    })));
+  },
+  getArrayMin: function getArrayMin(array) {
+    return Math.min.apply(Math, _toConsumableArray(array));
+  },
+  getArraysMin: function getArraysMin(arraySet) {
+    var _this2 = this;
 
-/***/ }),
+    return Math.min.apply(Math, _toConsumableArray(arraySet.map(function (array) {
+      return _this2.getArrayMin(array);
+    })));
+  },
+  getDataSet: function getDataSet(series) {
+    return series.map(function (item) {
+      return item.data;
+    });
+  },
+  getNegativeMinNum: function getNegativeMinNum(num, gap) {
+    return Math.floor(num / gap) * gap;
+  },
+  getXAxisWidth: function getXAxisWidth(width, padding) {
+    return width - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES;
+  },
+  getYAxisHeight: function getYAxisHeight(height, padding) {
+    return height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES;
+  },
+  calculateXAxisGap: function calculateXAxisGap(xAxisWidth, length) {
+    return Math.floor(xAxisWidth / (length - 1));
+  },
+  calculateYAxis: function calculateYAxis(max, min, unit, digit) {
+    var gap = this.calculateYAxisGap(max, min, unit, digit);
 
-/***/ "./src/js/utils/helper.js":
-/*!********************************!*\
-  !*** ./src/js/utils/helper.js ***!
-  \********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    if (min < 0) {
+      min = this.getNegativeMinNum(min, gap);
+    }
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  pipe: function pipe() {\n    for (var _len = arguments.length, functions = new Array(_len), _key = 0; _key < _len; _key++) {\n      functions[_key] = arguments[_key];\n    }\n\n    return function (args) {\n      return functions.reduce(function (arg, nextFn) {\n        return nextFn(arg);\n      }, args);\n    };\n  },\n  selectEl: function selectEl(selector) {\n    return document.querySelector(selector);\n  },\n  createEl: function createEl(el) {\n    return document.createElement(el);\n  },\n  createElNS: function createElNS(el, namespaceURI) {\n    return document.createElementNS(namespaceURI, el);\n  },\n  addEventToEl: function addEventToEl(el, type, fn, bindEl) {\n    el.addEventListener(type, function (e) {\n      fn.call(bindEl, e);\n    });\n  },\n  findKey: function findKey(collection, key) {\n    for (var item in collection) {\n      if (collection[item] === key) {\n        return item;\n      }\n    }\n  }\n});\n\n//# sourceURL=webpack:///./src/js/utils/helper.js?");
+    var yAxisData = [];
 
-/***/ }),
+    for (var i = 0; i < unit; i++) {
+      yAxisData.push(min + i * gap);
+    }
 
-/***/ "./src/js/utils/variables.js":
-/*!***********************************!*\
-  !*** ./src/js/utils/variables.js ***!
-  \***********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    return yAxisData;
+  },
+  calculateYAxisGap: function calculateYAxisGap(max, min, unit, digit) {
+    var gap;
+    var maxMinGap = Math.ceil(max - min);
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  DEFAULT_PADDING: 40,\n  DEFAULT_PADDING_MULTIPLE_TIMES: 2,\n  DEFAULT_PADDING_DIVISION_TIMES: 2,\n  DEFAULT_DIGIT: 10,\n  AXIS_LABEL_LINE_SIZE: 5,\n  Y_AXIS_UNIT: 6,\n  X_AXIS_LABEL_PADDING_MULTIPLE_TIMES: 1.5,\n  Y_AXIS_LABEL_PADDING_MULTIPLE_TIMES: 1.6,\n  CHART_TYPES: {\n    LINE_CHART: 'line',\n    BAR_CHART: 'bar',\n    PIE_CHART: 'pie',\n    AREA_CHART: 'area'\n  },\n  TOOLTIP_PADDINT_TOP: -20,\n  TOOLTIP_PADDINT_LEFT: 20,\n  TOOLTIP_HIDE_LEFT_POSITION: -10000\n});\n\n//# sourceURL=webpack:///./src/js/utils/variables.js?");
+    if (maxMinGap <= 25) {
+      gap = 5;
+    } else if (maxMinGap <= 50) {
+      gap = 10;
+    } else if (maxMinGap <= 100) {
+      gap = 20;
+    } else if (maxMinGap <= 150) {
+      gap = 30;
+    } else if (maxMinGap <= 200) {
+      gap = 40;
+    } else {
+      var multipleNum = Math.ceil(maxMinGap / 50 / 5);
+      gap = multipleNum * 50;
+    }
+
+    return gap;
+  }
+});
+// CONCATENATED MODULE: ./src/js/charts/chartBasic.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var chartBasic_ChartBasic =
+/*#__PURE__*/
+function () {
+  function ChartBasic(_ref) {
+    var padding = _ref.padding,
+        type = _ref.type,
+        size = _ref.size,
+        containerEl = _ref.containerEl,
+        data = _ref.data,
+        options = _ref.options;
+
+    _classCallCheck(this, ChartBasic);
+
+    this.padding = !options.hasOwnProperty(padding) ? variables.DEFAULT_PADDING : padding;
+    this.size = size;
+    this.containerEl = helper.selectEl(containerEl);
+    this.data = data;
+    this.options = options;
+    this.svgEl = this.appendSvgEl(size);
+    this.tooltipEl = options.tooltip.show ? this.appendTooltipEl() : '';
+    this.unit = variables.Y_AXIS_UNIT;
+    this.digit = variables.DEFAULT_DIGIT;
+    this.colors = ['#60c5ba', '#47b8e0', '#205e74'];
+  }
+
+  _createClass(ChartBasic, [{
+    key: "appendSvgEl",
+    value: function appendSvgEl(_ref2) {
+      var width = _ref2.width,
+          height = _ref2.height;
+
+      var svgEl = helper.createElNS("svg", "http://www.w3.org/2000/svg");
+
+      svgEl.setAttribute("width", width);
+      svgEl.setAttribute("height", height);
+      svgEl.setAttribute("viewBox", "0 0 ".concat(width, " ").concat(height));
+      return svgEl;
+    }
+  }, {
+    key: "appendTooltipEl",
+    value: function appendTooltipEl() {
+      var tooltipEl = helper.createEl("div");
+
+      tooltipEl.setAttribute("class", "tooltip");
+      return tooltipEl;
+    }
+  }, {
+    key: "drawXAxis",
+    value: function drawXAxis(_ref3) {
+      var _ref4 = _slicedToArray(_ref3, 2),
+          padding = _ref4[0],
+          _ref4$ = _ref4[1],
+          width = _ref4$.width,
+          height = _ref4$.height;
+
+      var axisLabel = {
+        x: width - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES,
+        y: height - padding / variables.DEFAULT_PADDING_DIVISION_TIMES
+      };
+      var axisLine = {
+        left: {
+          x: padding,
+          y: height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES
+        },
+        right: {
+          x: width - padding,
+          y: height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES
+        }
+      };
+      var xAxisLabel = this.options.xAxis.show ? "<text x=\"".concat(axisLabel.x, "\" y=\"").concat(axisLabel.y, "\">").concat(this.options.xAxis.title, "</text>") : "";
+      this.svgEl.innerHTML += "\n      <g class=\"axis x-axis\">\n        ".concat(xAxisLabel, "\n        <line x1=\"").concat(axisLine.left.x, "\" x2=\"").concat(axisLine.right.x, "\" y1=\"").concat(axisLine.left.y, "\" y2=\"").concat(axisLine.right.y, "\" />\n      </g>\n    ");
+    }
+  }, {
+    key: "drawXAxisLabels",
+    value: function drawXAxisLabels(_ref5) {
+      var _ref6 = _slicedToArray(_ref5, 3),
+          padding = _ref6[0],
+          size = _ref6[1],
+          xAxisData = _ref6[2];
+
+      var xAxisWidth = calculate.getXAxisWidth(size.width, padding);
+
+      var gap = calculate.calculateXAxisGap(xAxisWidth, xAxisData.length);
+
+      var xAxisLabels = xAxisData.map(function (data, index) {
+        return "\n        <text x=\"".concat(padding + gap * index, "\" y=\"").concat(size.height - padding * variables.X_AXIS_LABEL_PADDING_MULTIPLE_TIMES, "\">").concat(data, "</text>\n        <line x1=\"").concat(padding + gap * index, "\" x2=\"").concat(padding + gap * index, "\" y1=\"").concat(size.height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES, "\" y2=\"").concat(size.height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES + variables.AXIS_LABEL_LINE_SIZE, "\" />\n      ");
+      }).join("");
+      this.svgEl.innerHTML += "<g class=\"labels x-axis-labels\">".concat(xAxisLabels, "</g>");
+    }
+  }, {
+    key: "drawYAxis",
+    value: function drawYAxis(_ref7) {
+      var _ref8 = _slicedToArray(_ref7, 2),
+          padding = _ref8[0],
+          _ref8$ = _ref8[1],
+          width = _ref8$.width,
+          height = _ref8$.height;
+
+      var axisLabel = {
+        x: 0,
+        y: padding / variables.DEFAULT_PADDING_DIVISION_TIMES
+      };
+      var axisLine = {
+        left: {
+          x: padding,
+          y: height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES
+        },
+        right: {
+          x: padding,
+          y: padding
+        }
+      };
+      var yAxisLabel = this.options.yAxis.show ? "<text x=\"".concat(axisLabel.x, "\" y=\"").concat(axisLabel.y, "\">").concat(this.options.yAxis.title, "</text>") : "";
+      this.svgEl.innerHTML += "\n      <g class=\"axis y-axis\">\n        ".concat(yAxisLabel, "\n        <line x1=\"").concat(axisLine.left.x, "\" x2=\"").concat(axisLine.right.x, "\" y1=\"").concat(axisLine.left.y, "\" y2=\"").concat(axisLine.right.y, "\" />\n      </g>\n    ");
+    }
+  }, {
+    key: "drawYAxisLabels",
+    value: function drawYAxisLabels(_ref9) {
+      var _ref10 = _slicedToArray(_ref9, 5),
+          padding = _ref10[0],
+          size = _ref10[1],
+          series = _ref10[2],
+          unit = _ref10[3],
+          digit = _ref10[4];
+
+      var showGrid = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      var max = calculate.getArraysMax(calculate.getDataSet(series));
+
+      var min = calculate.getArraysMin(calculate.getDataSet(series)) < 0 ? calculate.getArraysMin(calculate.getDataSet(series)) : 0;
+
+      var yAxisHeight = calculate.getYAxisHeight(size.height, padding);
+
+      var yAxisData = calculate.calculateYAxis(max, min, unit, digit);
+
+      var yAxisLabels = yAxisData.map(function (data, index) {
+        return "\n        <text x=\"".concat(padding / variables.DEFAULT_PADDING_DIVISION_TIMES * variables.Y_AXIS_LABEL_PADDING_MULTIPLE_TIMES, "\" y=\"").concat(yAxisHeight - yAxisHeight / unit * index, "\">").concat(data, "</text>\n        <line x1=\"").concat(padding - variables.AXIS_LABEL_LINE_SIZE, "\" x2=\"").concat(padding, "\" y1=\"").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), "\" y2=\"").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), "\" />\n      ");
+      }).join("");
+      this.svgEl.innerHTML += "<g class=\"labels y-axis-labels\">".concat(yAxisLabels, "</g>");
+
+      if (showGrid) {
+        this.drawYAxisGrid({
+          padding: padding,
+          size: size,
+          yAxisData: yAxisData,
+          unit: unit
+        });
+      }
+    }
+  }, {
+    key: "drawYAxisGrid",
+    value: function drawYAxisGrid(_ref11) {
+      var padding = _ref11.padding,
+          size = _ref11.size,
+          yAxisData = _ref11.yAxisData,
+          unit = _ref11.unit;
+
+      var yAxisHeight = calculate.getYAxisHeight(size.height, padding);
+
+      var yAxisGrid = yAxisData.map(function (data, index) {
+        return "<line x1=\"".concat(padding, "\" x2=\"").concat(size.width - padding, "\" y1=\"").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), "\" y2=\"").concat(yAxisHeight - Math.round(yAxisHeight / unit * index), "\" />");
+      }).join("");
+      this.svgEl.innerHTML += "<g class=\"grid y-axis-grid\">".concat(yAxisGrid, "</g>");
+    }
+  }, {
+    key: "addTooltipEvent",
+    value: function addTooltipEvent(e) {
+      if (e.target.nodeName.toLowerCase() !== 'circle') {
+        this.tooltipEl.style.left = "".concat(variables.TOOLTIP_HIDE_LEFT_POSITION, "px");
+      } else {
+        var data = e.target.dataset;
+        this.tooltipEl.innerHTML = "\n        <h2 class=\"tooltip__title\">".concat(data.date, "</h2>\n        <p class=\"tooltip__desc\">\n          <span class=\"tooltip__line\" style=\"background: ").concat(data.color, "\"></span>\n          ").concat(data.value, "\n        </p>\n      ");
+        this.tooltipEl.style.left = "".concat(e.clientX + variables.TOOLTIP_PADDINT_LEFT, "px");
+        this.tooltipEl.style.top = "".concat(e.clientY + variables.TOOLTIP_PADDINT_TOP, "px");
+      }
+    }
+  }, {
+    key: "drawChart",
+    value: function drawChart(containerEl, tooltipEl, svgEl) {
+      containerEl.classList.add('dopyo-chart');
+      containerEl.style.minWidth = "".concat(this.size.width, "px");
+      tooltipEl && containerEl.appendChild(tooltipEl);
+      containerEl.appendChild(svgEl);
+    } // *********************
+    // Test
+    // *********************
+    // addData(option) {
+    //   this.data.xAxis.push(option.xAxis);
+    //   option.series.forEach(a => {
+    //     this.data.series.forEach(b => {
+    //       if (a.name === b.name) {
+    //         b.data.push(a.data);
+    //       }
+    //     })
+    //   })
+    //   this.resetChart();
+    //   this.init();
+    // }
+    // resetChart() {
+    //   document.querySelector('svg').innerHTML = "";
+    //   this.svg = this.appendSvgEl(this.size);
+    // }
+
+  }]);
+
+  return ChartBasic;
+}();
+
+
+// CONCATENATED MODULE: ./src/js/charts/lineChart.js
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function lineChart_slicedToArray(arr, i) { return lineChart_arrayWithHoles(arr) || lineChart_iterableToArrayLimit(arr, i) || lineChart_nonIterableRest(); }
+
+function lineChart_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function lineChart_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function lineChart_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function lineChart_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function lineChart_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function lineChart_createClass(Constructor, protoProps, staticProps) { if (protoProps) lineChart_defineProperties(Constructor.prototype, protoProps); if (staticProps) lineChart_defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var lineChart_LineChart =
+/*#__PURE__*/
+function (_ChartBasic) {
+  _inherits(LineChart, _ChartBasic);
+
+  function LineChart(_ref) {
+    var size = _ref.size,
+        containerEl = _ref.containerEl,
+        data = _ref.data,
+        options = _ref.options;
+
+    lineChart_classCallCheck(this, LineChart);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(LineChart).call(this, {
+      size: size,
+      containerEl: containerEl,
+      data: data,
+      options: options
+    }));
+  }
+
+  lineChart_createClass(LineChart, [{
+    key: "render",
+    value: function render() {
+      this.drawXAxis([this.padding, this.size]);
+      this.drawXAxisLabels([this.padding, this.size, this.data.xAxis]);
+      this.drawYAxis([this.padding, this.size]);
+      this.drawYAxisLabels([this.padding, this.size, this.data.series, this.unit, this.digit]);
+      this.drawData([this.padding, this.size, this.data, this.unit, this.digit]);
+      this.tooltipEl && helper.addEventToEl(this.svgEl, 'mouseover', this.addTooltipEvent, this);
+      this.drawChart(this.containerEl, this.tooltipEl, this.svgEl);
+    }
+  }, {
+    key: "drawData",
+    value: function drawData(_ref2) {
+      var _this = this;
+
+      var _ref3 = lineChart_slicedToArray(_ref2, 5),
+          padding = _ref3[0],
+          size = _ref3[1],
+          data = _ref3[2],
+          unit = _ref3[3],
+          digit = _ref3[4];
+
+      var max = calculate.getArraysMax(calculate.getDataSet(data.series));
+
+      var min = calculate.getArraysMin(calculate.getDataSet(data.series)) < 0 ? calculate.getArraysMin(calculate.getDataSet(data.series)) : 0;
+
+      var yAxisData = calculate.calculateYAxis(max, min, unit, digit);
+
+      var yAxisHeight = calculate.getYAxisHeight(size.height, padding);
+
+      var standardYAxis = {
+        value: calculate.calculateYAxisGap(max, min, unit, digit),
+        yCoordinate: yAxisHeight / unit
+      };
+      var zeroIndex = yAxisData.findIndex(function (num) {
+        return num === 0;
+      });
+
+      var xAxisGap = calculate.calculateXAxisGap(calculate.getXAxisWidth(size.width, padding), data.xAxis.length);
+
+      data.series.forEach(function (item, index) {
+        item.calculatedData = item.data.map(function (y, i) {
+          return [Math.round(padding + xAxisGap * i), Math.round(yAxisHeight - y * standardYAxis.yCoordinate / standardYAxis.value + -Math.round(standardYAxis.yCoordinate * zeroIndex))];
+        });
+      });
+      this.svgEl.innerHTML += data.series.map(function (item, index) {
+        return "<g class=\"data\">\n        ".concat(_this.drawLine(item, index), "\n        ").concat(_this.drawDots(data.xAxis, item, index), "\n      </g>\n      ");
+      }).join("");
+    }
+  }, {
+    key: "drawDots",
+    value: function drawDots(xAxis, item, index) {
+      var _this2 = this;
+
+      var dots = item.calculatedData.map(function (x, i) {
+        return "<circle cx=\"".concat(x[0], "\" cy=\"").concat(x[1], "\" r=\"8\" stroke=\"").concat(_this2.colors[index], "\" fill=\"#fff\" data-color=\"").concat(_this2.colors[index], "\" data-date=\"").concat(xAxis[i], "\" data-value=\"").concat(item.data[i], "\" />");
+      }).join("");
+      return "<g class=\"dots\">".concat(dots, "</g>");
+    }
+  }, {
+    key: "drawLine",
+    value: function drawLine(item, index) {
+      var tmpLine = item.calculatedData.reduce(function (accum, curr, idx, array) {
+        if (!Array.isArray(curr)) {
+          return;
+        } else {
+          if (idx === 0) {
+            accum += 'M ';
+          } else if (idx === 1) {
+            accum += 'L ';
+          }
+
+          return accum += "".concat(curr.join(","), " ");
+        }
+      }, "");
+      return "<g class=\"line\"><path fill=\"none\" d=\"".concat(tmpLine, "\" stroke=\"").concat(this.colors[index], "\" /></g>");
+    }
+  }]);
+
+  return LineChart;
+}(chartBasic_ChartBasic);
+
+
+// CONCATENATED MODULE: ./src/js/charts/areaChart.js
+function areaChart_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { areaChart_typeof = function _typeof(obj) { return typeof obj; }; } else { areaChart_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return areaChart_typeof(obj); }
+
+function areaChart_toConsumableArray(arr) { return areaChart_arrayWithoutHoles(arr) || areaChart_iterableToArray(arr) || areaChart_nonIterableSpread(); }
+
+function areaChart_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function areaChart_iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function areaChart_arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function areaChart_slicedToArray(arr, i) { return areaChart_arrayWithHoles(arr) || areaChart_iterableToArrayLimit(arr, i) || areaChart_nonIterableRest(); }
+
+function areaChart_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function areaChart_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function areaChart_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function areaChart_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function areaChart_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function areaChart_createClass(Constructor, protoProps, staticProps) { if (protoProps) areaChart_defineProperties(Constructor.prototype, protoProps); if (staticProps) areaChart_defineProperties(Constructor, staticProps); return Constructor; }
+
+function areaChart_possibleConstructorReturn(self, call) { if (call && (areaChart_typeof(call) === "object" || typeof call === "function")) { return call; } return areaChart_assertThisInitialized(self); }
+
+function areaChart_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function areaChart_getPrototypeOf(o) { areaChart_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return areaChart_getPrototypeOf(o); }
+
+function areaChart_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) areaChart_setPrototypeOf(subClass, superClass); }
+
+function areaChart_setPrototypeOf(o, p) { areaChart_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return areaChart_setPrototypeOf(o, p); }
+
+
+
+
+
+
+var areaChart_AreaChart =
+/*#__PURE__*/
+function (_LineChart) {
+  areaChart_inherits(AreaChart, _LineChart);
+
+  function AreaChart(_ref) {
+    var size = _ref.size,
+        containerEl = _ref.containerEl,
+        data = _ref.data,
+        options = _ref.options;
+
+    areaChart_classCallCheck(this, AreaChart);
+
+    return areaChart_possibleConstructorReturn(this, areaChart_getPrototypeOf(AreaChart).call(this, {
+      size: size,
+      containerEl: containerEl,
+      data: data,
+      options: options
+    }));
+  }
+
+  areaChart_createClass(AreaChart, [{
+    key: "drawData",
+    value: function drawData(_ref2) {
+      var _this = this;
+
+      var _ref3 = areaChart_slicedToArray(_ref2, 5),
+          padding = _ref3[0],
+          size = _ref3[1],
+          data = _ref3[2],
+          unit = _ref3[3],
+          digit = _ref3[4];
+
+      var max = calculate.getArraysMax(calculate.getDataSet(data.series));
+
+      var min = calculate.getArraysMin(calculate.getDataSet(data.series)) < 0 ? calculate.getArraysMin(calculate.getDataSet(data.series)) : 0;
+
+      var yAxisData = calculate.calculateYAxis(max, min, unit, digit);
+
+      var yAxisHeight = calculate.getYAxisHeight(size.height, padding);
+
+      var standardYAxis = {
+        value: calculate.calculateYAxisGap(max, min, unit, digit),
+        yCoordinate: yAxisHeight / unit
+      };
+      var zeroIndex = yAxisData.findIndex(function (num) {
+        return num === 0;
+      });
+
+      var xAxisGap = calculate.calculateXAxisGap(calculate.getXAxisWidth(size.width, padding), data.xAxis.length);
+
+      data.series.forEach(function (item, index) {
+        item.calculatedData = item.data.map(function (y, i) {
+          return [Math.round(padding + xAxisGap * i), Math.round(yAxisHeight - y * standardYAxis.yCoordinate / standardYAxis.value + -Math.round(standardYAxis.yCoordinate * zeroIndex))];
+        });
+      });
+      this.svgEl.innerHTML += data.series.map(function (item, index) {
+        return "<g class=\"data\">\n        ".concat(_this.drawArea(item, index), "\n        ").concat(_this.drawLine(item, index), "\n        ").concat(_this.drawDots(data.xAxis, item, index), "\n      </g>\n      ");
+      }).join("");
+    }
+  }, {
+    key: "drawArea",
+    value: function drawArea(item, index) {
+      var _this$size = this.size,
+          width = _this$size.width,
+          height = _this$size.height;
+      var padding = this.padding;
+      var tmpCalculatedData = [].concat(areaChart_toConsumableArray(item.calculatedData), [[item.calculatedData[item.calculatedData.length - 1][0], height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES], [padding, height - padding * variables.DEFAULT_PADDING_MULTIPLE_TIMES]]);
+      var tmpLine = tmpCalculatedData.reduce(function (accum, curr, idx, array) {
+        if (!Array.isArray(curr)) {
+          return;
+        } else {
+          if (idx === 0) {
+            accum += 'M ';
+          } else if (idx === 1) {
+            accum += 'L ';
+          }
+
+          return accum += "".concat(curr.join(","), " ");
+        }
+      }, "");
+      return "<g class=\"area\">\n      <path fill-opacity=\"0.5\" fill=\"".concat(this.colors[index], "\" d=\"").concat(tmpLine, " Z\" />\n    </g>");
+    }
+  }]);
+
+  return AreaChart;
+}(lineChart_LineChart);
+
+
+// CONCATENATED MODULE: ./src/js/chart.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dopyo", function() { return dopyo; });
+
+
+
+
+
+var dopyo = {
+  createChart: function createChart(_ref) {
+    var type = _ref.type,
+        size = _ref.size,
+        containerEl = _ref.containerEl,
+        data = _ref.data,
+        options = _ref.options;
+
+    var chartType = helper.findKey(variables.CHART_TYPES, type);
+
+    switch (chartType) {
+      case 'LINE_CHART':
+        this.drawLineChart({
+          size: size,
+          containerEl: containerEl,
+          data: data,
+          options: options
+        });
+        break;
+
+      case 'BAR_CHART':
+        break;
+
+      case 'PIE_CHART':
+        break;
+
+      case 'AREA_CHART':
+        this.drawAreaChart({
+          size: size,
+          containerEl: containerEl,
+          data: data,
+          options: options
+        });
+        break;
+    }
+  },
+  drawLineChart: function drawLineChart(_ref2) {
+    var size = _ref2.size,
+        containerEl = _ref2.containerEl,
+        data = _ref2.data,
+        options = _ref2.options;
+    var chart = new lineChart_LineChart({
+      size: size,
+      containerEl: containerEl,
+      data: data,
+      options: options
+    });
+    chart.render();
+  },
+  drawAreaChart: function drawAreaChart(_ref3) {
+    var size = _ref3.size,
+        containerEl = _ref3.containerEl,
+        data = _ref3.data,
+        options = _ref3.options;
+    var chart = new areaChart_AreaChart({
+      size: size,
+      containerEl: containerEl,
+      data: data,
+      options: options
+    });
+    chart.render();
+  }
+};
+
 
 /***/ })
-
-/******/ });
+/******/ ]);
+});
