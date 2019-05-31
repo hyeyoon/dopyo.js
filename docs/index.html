@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>dopyo.js examples</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="../dist/dopyo.css">
+  <link rel="stylesheet" href="./assets/css/prism.css">
+  <link rel="stylesheet" href="./assets/css/docs.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+  <div id="app">
+    <section class="hero is-info is-large">
+      <div class="hero-head">
+        <nav class="navbar">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item">
+                <img src="./assets/img/dopyo_logo.png" alt="dopyo.js">
+              </a>
+              <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            <div id="navbarMenuHeroB" class="navbar-menu">
+              <div class="navbar-end">
+                <!-- <a class="navbar-item is-active">
+                  Home
+                </a> -->
+                <!-- <a class="navbar-item">
+                  Examples
+                </a> -->
+                <!-- <a class="navbar-item">
+                  Documentation
+                </a> -->
+                <span class="navbar-item">
+                  <a href="https://github.com/hyeyoon/dopyo.js" target="_blank" class="button is-info is-inverted">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Download</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title dopyo-doc__title">
+            dopyo.js
+          </p>
+          <p class="subtitle">
+            간단하고 가벼운 자바스크립트 차트 라이브러리.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-foot">
+        <nav class="tabs is-boxed is-fullwidth">
+          <div class="container">
+            <ul>
+              <li :class="{'is-active': item.isActive}" v-for="item in tabs" @click="activeTab(item)">
+                <a>{{ item.title }}</a>
+              </li>
+            </ul>
+            <div class="content is-medium dopyo-doc dopyo-doc--first" v-show="tabs[0].isActive">
+              <div class="notification is-warning">
+                <strong>NOTE</strong><br>
+                🚧🛠 현재 개발중입니다...사용에 주의하고 계속 지켜봐주세요 👀
+              </div>
+              <h2>Installation</h2>
+              <h3>직접 삽입</h3>
+              <p>css파일과 javascript를 다운로드 받아서 직접 link와 script 태그로 삽입하세요.</p>
+              <div class="code-block">
+                <pre class="language-html">
+<code>&lt;!-- Uncompressed --&gt;
+&lt;link rel="stylesheet" href="$YOUR_PATH/dopyo.css"&gt;
+&lt;script src="$YOUR_PATH/dopyo.js"&gt;&lt;/script&gt;
+&lt;!-- Compressed --&gt;
+&lt;link rel="stylesheet" href="$YOUR_PATH/dopyo.min.css"&gt;
+&lt;script src="$YOUR_PATH/dopyo.min.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+              <h3>NPM</h3>
+              <p>NPM 설치를 제공하고 있습니다. Webpack 등을 사용한 모듈 번들러와 함께 사용할 수 있습니다.</p>
+              <div class="code-block">
+                <pre class="language-html">
+<code>npm install dopyo.js</code></pre>
+              </div>
+              <div class="code-block">
+                <pre class="language-javascript">
+<code>import 'dopyo.js/dist/dopyo.css';
+import { dopyo } from 'dopyo.js';</code></pre>
+              </div>
+            </div>
+            <div class="content is-medium dopyo-doc" v-show="tabs[1].isActive">
+              <h2>Line Chart</h2>
+              <h3>Demo</h3>
+              <div class="dopyo-chart-container">
+                <div id="linechart"></div>
+              </div>
+              <h3>HTML</h3>
+              <div class="code-block">
+                <pre class="language-html">
+<code>&lt;div id="linechart"&gt;&lt;/div&gt;</code></pre>
+              </div>
+              <h3>Javascript</h3>
+              <div class="code-block">
+                <pre class="language-javascript">
+<code>document.addEventListener('DOMContentLoaded', () => {
+  const lineChart = dopyo.createChart({
+    type: 'line',
+    size: {
+      width: 600,
+      height: 400,
+    },
+    containerEl: '#linechart',
+    data: {
+      xAxis: ['2018-01', '2018-02', '2018-03', '2018-04', '2018-05',],
+      series: [
+        {
+          name: '라인그래프1',
+          data: [0, 10, 20, 50, 30,]
+        },
+        {
+          name: '라인그래프2',
+          data: [20, 0, 15, 20, 70,]
+        },
+        {
+          name: '라인그래프3',
+          data: [10, 50, 10, 30, 50,]
+        },
+      ]
+    },
+    options: {
+      xAxis: {
+        show: false,
+      },
+      yAxis: {
+        show: true,
+        title: 'y축 이름'
+      },
+      tooltip: {
+        show: true,
+      }
+    }
+  });
+})</code></pre>
+              </div>
+            </div>
+            <div class="content is-medium dopyo-doc" v-show="tabs[2].isActive">
+              <h2>Area Chart</h2>
+              <h3>Demo</h3>
+              <div class="dopyo-chart-container">
+                <div id="areachart"></div>
+              </div>
+              <h3>HTML</h3>
+              <div class="code-block">
+                <pre class="language-html">
+<code>&lt;div id="areachart"&gt;&lt;/div&gt;</code></pre>
+              </div>
+              <h3>Javascript</h3>
+              <div class="code-block">
+                <pre class="language-javascript">
+<code>document.addEventListener('DOMContentLoaded', () => {
+  const areaChart = dopyo.createChart({
+    type: 'area',
+    size: {
+      width: 600,
+      height: 400,
+    },
+    containerEl: '#areachart',
+    data: {
+      xAxis: ['2018-01', '2018-02', '2018-03', '2018-04', '2018-05',],
+      series: [
+        {
+          name: '라인그래프1',
+          data: [30, 50, 70, 120, 100]
+        },
+        {
+          name: '라인그래프2',
+          data: [20, 30, 90, 60, 120]
+        },
+        {
+          name: '라인그래프3',
+          data: [0, 40, 60, 30, 100]
+        },
+      ]
+    },
+    options: {
+      xAxis: {
+        show: true,
+        title: 'x축 이름'
+      },
+      yAxis: {
+        show: true,
+        title: 'y축 이름'
+      },
+      tooltip: {
+        show: true,
+      }
+    }
+  });
+})</code></pre>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+  </div>
+  <script src="./js/prism.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.js" charset="utf-8"></script>
+  <!-- <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js" charset="utf-8"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+  <script src="../dist/dopyo.js"></script>
+  <script src="./docs.js"></script>
+</body>
+</html>
