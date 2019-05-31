@@ -4,7 +4,7 @@
 > Simple, lightweight javascript chart library.
 
 ## :blue_book: Documentation
-[Documentaion]('https://hyeyoon.github.io/dopyo.js/index.html')
+[Documentaion](https://hyeyoon.github.io/dopyo.js/index.html)
 
 ## :computer: Build Setup
 
@@ -22,4 +22,4 @@ $ npm run build
 ## :octocat: Contribution
 
 ## :pushpin: License
-[MIT]('https://opensource.org/licenses/MIT')
+[MIT](https://opensource.org/licenses/MIT)
